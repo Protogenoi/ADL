@@ -1,1 +1,30 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <div class="row">
+        <ul class="ca-menu">
+            <li>
+                <a href="/app/AddClient.php">
+                    <span class="ca-icon"><i class="fas fa-user-plus"></i></span>
+                    <div class="ca-content">
+                        <h2 class="ca-main">Add New<br/> Client</h2>
+                        <h3 class="ca-sub"></h3>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}
