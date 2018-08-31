@@ -53,6 +53,17 @@ class ADLController extends AbstractController
     }
 
     /**
+     * @Route("/Main", name="app_MainPage")
+     */
+
+    public function mainage()
+    {
+        return $this->render('ADL/mainPage.html.twig', [
+            'title' => 'Main'
+        ]);
+    }
+
+    /**
      * @Route("/ADL/{slug}")
      */
 
