@@ -36,7 +36,6 @@ namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 class ADLController extends AbstractController
 {
@@ -56,7 +55,7 @@ class ADLController extends AbstractController
      * @Route("/Main", name="app_MainPage")
      */
 
-    public function mainage()
+    public function mainPage()
     {
         return $this->render('ADL/mainPage.html.twig', [
             'title' => 'Main'
@@ -67,7 +66,7 @@ class ADLController extends AbstractController
      * @Route("/ADL/{slug}")
      */
 
-    public function mainPage($slug)
+    public function anyPage($slug)
     {
         return $this->render('ADL/mainPage.html.twig', [
             'title' => ucwords(str_replace('-', ' ', $slug)),
