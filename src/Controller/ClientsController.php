@@ -12,7 +12,7 @@
  *
  * Proprietary and confidential
  *
- * Written by michael <michael@adl-crm.uk>, 22/08/2018 14:23
+ * Written by michael <michael@adl-crm.uk>, 10/09/2018 12:37
  *
  * ADL CRM makes use of the following third party open sourced software/tools:
  *  DataTables - https://github.com/DataTables/DataTables
@@ -33,32 +33,19 @@
 namespace App\Controller;
 
 
-
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
-class ADLController extends AbstractController
+class ClientsController extends AbstractController
 {
 
     /**
-     * @Route("/", name="app_loginPage")
+     * @Route("/Client", name="app_clientsPage")
      */
-
-    public function loginPage()
+    public function clientsPage()
     {
-        return $this->render('ADL/loginPage.html.twig', [
-            'title' => 'Login'
-        ]);
-    }
-
-    /**
-     * @Route("/Main", name="app_MainPage")
-     */
-
-    public function mainPage()
-    {
-        return $this->render('ADL/mainPage.html.twig', [
-            'title' => 'Main'
+        return $this->render('ADL/clientsPage.html.twig', [
+            'title' => 'Client'
         ]);
     }
 
