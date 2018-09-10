@@ -33,6 +33,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Clients;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -40,12 +43,39 @@ class ClientsController extends AbstractController
 {
 
     /**
-     * @Route("/Client", name="app_clientsPage")
+     * @Route("/add/Client", name="app_addClientPage")
      */
-    public function clientsPage()
+    public function addClientsPage(EntityManagerInterface $em)
     {
+
+        die('todo');
+
+        return new Response(sprintf(
+            'Client added: Client id is: #%d',
+            $client->getID()
+        ));
+
+    }
+
+    /**
+     * @Route("/Client{slug}", name="app_clientsPage")
+     */
+    public function clientsPage($slug, EntityManagerInterface $em)
+    {
+
+        $repository = $em->getRepository(Clients::class);
+        /** @var Clients $client */
+        $client = $repository->findOneBy(['id' => $slug]);
+
+        if (!$client) {
+            throw $this->createNotFoundException(sprintf('No client found for "%s" found',
+                $slug));
+        }
+
+
         return $this->render('ADL/clientsPage.html.twig', [
-            'title' => 'Client'
+            'title' => 'Client',
+            'client' => $client,
         ]);
     }
 
