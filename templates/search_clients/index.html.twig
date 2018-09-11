@@ -44,6 +44,7 @@
                        name="q"
                        class="form-control"
                        placeholder="Search..."
+                       value="{{ app.request.query.get('q') }}"
                        >
             </div>
             <div class="input-group-append">
@@ -87,6 +88,10 @@
 
                 </tr>
 
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">No clients found</td>
+            </tr>
             {% endfor %}
             </tbody>
         </table>

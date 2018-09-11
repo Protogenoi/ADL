@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Clients;
+use App\Entity\Policy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -26,10 +27,11 @@ class ClientsRepository extends ServiceEntityRepository
     public function findAllWithSearch(?string $term)
     {
 
-    $qb = $this->createQueryBuilder('c');
+    $qb = $this->createQueryBuilder('c')
+    ->leftJoin('c.policies', 'a');
 
     if($term) {
-        $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term')
+        $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term OR a.reference LIKE :term')
         ->setParameter('term', '%'.$term.'%');
     }
 
