@@ -13,18 +13,25 @@ class ClientsFixtures extends BaseFixtures
 
         $this->createMany(Clients::class, 10, function (Clients $client, $count) {
 
-            $client->setTitle('Mr')
-                ->setFirstName('Michael')
-                ->setLastName('Owen')
-                ->setDob(\DateTime::createFromFormat('Y-m-d', '1987-02-08'))
-                ->setPhoneNumber('07401434619')
-                ->setEmail('michael@adl-crm.uk')
-                ->setAddress1('12 Clos Y Cwm')
-                ->setTown('Pontardawe')
-                ->setPostcode('SA8 4NA')
-                ->setAddedBy('ADL')
-                ->setAddedDate(\DateTime::createFromFormat('Y-m-d',
-                    '2018-09-10'))
+            $client->setTitle($this->faker->titleMale)
+                ->setFirstName($this->faker->firstNameMale)
+                ->setLastName($this->faker->lastName)
+                ->setDob($this->faker->dateTimeThisCentury)
+                ->setEmail($this->faker->email)
+                ->setTitle2($this->faker->titleFemale)
+                ->setFirstName2($this->faker->firstNameFemale)
+                ->setLastName2($this->faker->lastName)
+                ->setDob2($this->faker->dateTimeThisCentury)
+                ->setEmail2($this->faker->email)
+                ->setPhoneNumber(rand(447111111111,447999999999))
+                ->setAltNumber(rand(447111111111,447999999999))
+                ->setAddress1($this->faker->streetAddress)
+                ->setAddress2($this->faker->address)
+                ->setAddress3($this->faker->address)
+                ->setTown($this->faker->city)
+                ->setPostcode($this->faker->postcode)
+                ->setAddedBy($this->faker->name)
+                ->setAddedDate($this->faker->dateTimeThisMonth)
                 ->setOwner('E Corp');
         });
 
