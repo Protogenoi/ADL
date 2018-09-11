@@ -19,6 +19,27 @@ class ClientsRepository extends ServiceEntityRepository
         parent::__construct($registry, Clients::class);
     }
 
+    /**
+     * @param null|string $term
+     * @return Clients[]
+     */
+    public function findAllWithSearch(?string $term)
+    {
+
+    $qb = $this->createQueryBuilder('c');
+
+    if($term) {
+        $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term')
+        ->setParameter('term', '%'.$term.'%');
+    }
+
+    return $qb
+        ->orderBy('c.addedDate', 'DESC')
+        ->getQuery()
+        ->getResult();
+
+    }
+
 //    /**
 //     * @return Clients[] Returns an array of Clients objects
 //     */
