@@ -38,8 +38,8 @@
 
     <div class="row">
 
-        <form>
-            <div class="input-group mb-3">
+        <form class="form-inline">
+            <div class="input-group mb-2 mr-sm-2">
                 <input type="text"
                        name="q"
                        class="form-control"
@@ -47,7 +47,7 @@
                        value="{{ app.request.query.get('q') }}"
                        >
             </div>
-            <div class="input-group-append">
+            <div class="input-group mb-2 mr-sm-2">
                 <button type="submit"
                         class="btn btn-outline-secondary">
                     <span class="fas fa-search"></span>
@@ -55,7 +55,7 @@
             </div>
         </form>
 
-        <h1>Clients found ({{ pagination.getTotalItemCount }})</h1>
+        <p>Clients found ({{ pagination.getTotalItemCount }})</p>
 
         <table class="table">
             <thead>
