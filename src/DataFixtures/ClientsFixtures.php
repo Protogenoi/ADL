@@ -10,7 +10,6 @@ class ClientsFixtures extends BaseFixtures
     public function loadData(ObjectManager $manager)
     {
 
-
         $this->createMany(Clients::class, 10, function (Clients $client, $count) {
 
             $client->setTitle($this->faker->titleMale)
