@@ -25,7 +25,6 @@ class PolicyFixtures extends BaseFixtures
                 ->setClient(40)
                 ->setAddedBy($this->faker->name);
 
-
         });
 
         $manager->flush();
