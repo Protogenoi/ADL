@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Clients;
 use App\Entity\Policy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -22,9 +23,8 @@ class ClientsRepository extends ServiceEntityRepository
 
     /**
      * @param null|string $term
-     * @return Clients[]
      */
-    public function findAllWithSearch(?string $term)
+    public function getWithSearchQueryBuilder(?string $term): QueryBuilder
     {
 
     $qb = $this->createQueryBuilder('c')
@@ -36,9 +36,8 @@ class ClientsRepository extends ServiceEntityRepository
     }
 
     return $qb
-        ->orderBy('c.addedDate', 'DESC')
-        ->getQuery()
-        ->getResult();
+        ->orderBy('c.addedDate', 'DESC');
+
 
     }
 

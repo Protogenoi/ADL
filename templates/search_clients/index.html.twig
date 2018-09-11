@@ -55,6 +55,8 @@
             </div>
         </form>
 
+        <h1>Clients found ({{ pagination.getTotalItemCount }})</h1>
+
         <table class="table">
             <thead>
             <th>Date added</th>
@@ -64,7 +66,7 @@
             <th>Company</th>
             </thead>
             <tbody>
-            {% for client in clients %}
+            {% for client in pagination %}
                 <tr>
                     <td>
                         {{ client.addedDate| date('Y-m-d') }}
@@ -95,6 +97,8 @@
             {% endfor %}
             </tbody>
         </table>
+
+        {{ knp_pagination_render(pagination) }}
 
     </div>
 </div>
