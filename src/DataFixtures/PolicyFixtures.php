@@ -10,7 +10,7 @@ class PolicyFixtures extends BaseFixtures
     public function loadData(ObjectManager $manager)
     {
 
-        $this->createMany(Policy::class, 10, function (Policy $policy, $count) {
+/*        $this->createMany(Policy::class, 10, function (Policy $policy, $count) {
 
             $policy->setAgent($this->faker->name)
                 ->setCloser($this->faker->name)
@@ -25,7 +25,7 @@ class PolicyFixtures extends BaseFixtures
                 ->setClient(40)
                 ->setAddedBy($this->faker->name);
 
-        });
+        });*/
 
         $manager->flush();
     }
