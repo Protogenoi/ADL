@@ -135,6 +135,41 @@
                             </div>
                         </form>
                     </div>
+
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                            <th>Client</th>
+                            <th>Policy</th>
+                            <th>Type</th>
+                            <th>Comm Type</th>
+                            <th>Term</th>
+                            <th>Premium</th>
+                            <th>Cover</th>
+                            <th>Status</th>
+                            </thead>
+                            <tbody>
+{% for policy in policies %}
+                                <tr>
+                                    <td>{{ policy.commission }}</td>
+                                    <td><a href="#"</a>
+                                        {{ policy.reference }}</td>
+                                    <td>{{ policy.type }}</td>
+                                    <td>{{ policy.commType }}</td>
+                                    <td>{{ policy.term }}</td>
+                                    <td>{{ policy.premium }}</td>
+                                    <td>{{ policy.coverAmount }}</td>
+                                    <td></td>
+                                </tr>
+{% endfor %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">No Policies found</td>
+                                    </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
                     
                 </div>
                 <div class="tab-pane fade" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">

@@ -34,6 +34,7 @@ namespace App\Controller;
 
 
 use App\Entity\Clients;
+use App\Repository\AegonPolicyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,8 +61,10 @@ class ClientsController extends AbstractController
     /**
      * @Route("/Client{slug}", name="app_clientsPage")
      */
-    public function clientsPage($slug, EntityManagerInterface $em)
+    public function clientsPage($slug, EntityManagerInterface $em, AegonPolicyRepository $aegonRepo)
     {
+
+        $policies = $aegonRepo->findBy([], ['id' => 'DESC']);
 
         $repository = $em->getRepository(Clients::class);
         /** @var Clients $client */
@@ -72,10 +75,10 @@ class ClientsController extends AbstractController
                 $slug));
         }
 
-
         return $this->render('ADL/clientsPage.html.twig', [
             'title' => 'Client',
             'client' => $client,
+            'policies' => $policies,
         ]);
     }
 

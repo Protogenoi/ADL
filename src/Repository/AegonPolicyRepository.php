@@ -19,6 +19,25 @@ class AegonPolicyRepository extends ServiceEntityRepository
         parent::__construct($registry, AegonPolicy::class);
     }
 
+    /**
+     * @param int|null $slug
+     */
+/*    public function GetAegonPoliciesByIdQueryBuilder(?int $slug)
+    {
+
+        $qb= $this->createQueryBuilder('c')
+            ->leftJoin('c.policy', 'a');
+
+        if($slug) {
+            $qb->andWhere('a.policy = :term')
+                ->setParameter('term', $slug);
+        }
+
+        return $qb
+            ->orderBy('a.addedDate', 'DESC');
+
+    }*/
+
 //    /**
 //     * @return AegonPolicy[] Returns an array of AegonPolicy objects
 //     */
