@@ -62,82 +62,134 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <div class="row">
 
-                            <div class="col-sm">
-                                <h2><span class="badge badge-info">Client Details</span></h2>
+                        <div class="col-sm">
+                            <h2><span class="badge badge-info">Client Details</span></h2>
 
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.title }} {{ client.firstName }} {{ client.lastName }}"
-                                           readonly>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-user"></i></button>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.dob| date('Y-m-d') }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text" value="{{ client.email }}"
-                                           readonly>
-                                </div>
-
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.title }} {{ client.firstName }} {{ client.lastName }}"
+                                       readonly>
                             </div>
 
-                            <div class="col-sm">
-
-                                {% if(client.title2) %}
-
-                                    <h2><span class="badge badge-info">Client Details (2)</span></h2>
-
-                                    <div class="form-group">
-                                        <input class="form-control form-control-sm" type="text"
-                                               value="{{ client.title2 }} {{ client.firstName2 }} {{ client.lastName2 }}"
-                                               readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control form-control-sm" type="text"
-                                               value="{{ client.dob2| date('Y-m-d') }}" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control form-control-sm" type="text"
-                                               value="{{ client.email2 }}" readonly>
-                                    </div>
-                                {% endif %}
-
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-calendar-alt"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.dob| date('Y-m-d') }}" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-envelope"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text" value="{{ client.email }}"
+                                       readonly>
                             </div>
 
-                            <div class="col-sm">
-                                <h2><span class="badge badge-info">Contact Details</span></h2>
-                                <div class="form-group">
+                        </div>
+
+                        <div class="col-sm">
+
+                            {% if(client.title2) %}
+
+                                <h2><span class="badge badge-info">Client Details (2)</span></h2>
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="input-group btn btn-primary"><i class="fas fa-user"></i></button>
+                                    </div>
                                     <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.phoneNumber }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.altNumber }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.address1 }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.address2 }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.address3 }}" readonly>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control form-control-sm" type="text" value="{{ client.town }}"
+                                           value="{{ client.title2 }} {{ client.firstName2 }} {{ client.lastName2 }}"
                                            readonly>
                                 </div>
-                                <div class="form-group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="input-group btn btn-primary"><i class="fas fa-calendar-alt"></i></button>
+                                    </div>
                                     <input class="form-control form-control-sm" type="text"
-                                           value="{{ client.postcode }}" readonly>
+                                           value="{{ client.dob2| date('Y-m-d') }}" readonly>
                                 </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="input-group btn btn-primary"><i class="fas fa-envelope"></i></button>
+                                    </div>
+                                    <input class="form-control form-control-sm" type="text"
+                                           value="{{ client.email2 }}" readonly>
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="col-sm">
+                            <h2><span class="badge badge-info">Contact Details</span></h2>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-phone"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.phoneNumber }}" readonly>
                             </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-phone"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.altNumber }}" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-home"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.address1 }}" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-list"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.address2 }}" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-list"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.address3 }}" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-list"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text" value="{{ client.town }}"
+                                       readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="input-group btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                                <input class="form-control form-control-sm" type="text"
+                                       value="{{ client.postcode }}" readonly>
+                            </div>
+                        </div>
 
                     </div>
-
+                    <br>
+                    <div class="row">
+                        <div class="btn-group mx-auto" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-primary">Policy Keyfacts</button>
+                            <button type="button" class="btn btn-outline-secondary">Policy App</button>
+                            <button type="button" class="btn btn-outline-success">Dealsheet</button>
+                            <button type="button" class="btn btn-outline-danger">Closer Recording</button>
+                            <button type="button" class="btn btn-outline-warning">Agent Recording</button>
+                            <button type="button" class="btn btn-outline-info">Insurer portal</button>
+                            <button type="button" class="btn btn-outline-dark">Dark</button>
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <table class="table">
                             <thead>
@@ -151,7 +203,7 @@
                             <th>Status</th>
                             </thead>
                             <tbody>
-{% for policy in policies %}
+                            {% for policy in policies %}
                                 <tr>
                                     <td>{{ policy.commission }}</td>
                                     <td><a href="#"</a>
@@ -163,44 +215,44 @@
                                     <td>{{ policy.coverAmount }}</td>
                                     <td></td>
                                 </tr>
-{% else %}
-                                    <tr>
-                                        <td colspan="8" class="text-center">No Policies found</td>
-                                    </tr>
-{% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="8" class="text-center">No Policies found</td>
+                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                        <div class="row">
-                            <table class="table">
-                                <thead>
-                                <th>Insurer</th>
-                                <th>Policy</th>
-                                <th>Client</th>
-                                <th>Status</th>
-                                </thead>
-                                <tbody>
-{% for all in allpolicies %}
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                            <th>Insurer</th>
+                            <th>Policy</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            </thead>
+                            <tbody>
+                            {% for all in allpolicies %}
 
-    <tr>
-        <td>{{ all.insurer }}</td>
-        <td><a href="#"</a>
-            {{ all.reference }}</td>
-        <td>{{ all.policyHolder }}</td>
-        <td>{{ all.status }}</td>
-    </tr>
-    {% else %}
-<tr>
-    <td colspan="5" class="text-center">No Policies found</td>
-</tr>
+                                <tr>
+                                    <td>{{ all.insurer }}</td>
+                                    <td><a href="#"</a>
+                                        {{ all.reference }}</td>
+                                    <td>{{ all.policyHolder }}</td>
+                                    <td>{{ all.status }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center">No Policies found</td>
+                                </tr>
 
 
-{% endfor %}
+                            {% endfor %}
 
-                                </tbody>
-                            </table>
+                            </tbody>
+                        </table>
                     </div>
-                    
+
                 </div>
                 <div class="tab-pane fade" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
                     Timeline
