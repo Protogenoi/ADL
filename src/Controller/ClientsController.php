@@ -35,7 +35,9 @@ namespace App\Controller;
 
 use App\Entity\Clients;
 use App\Repository\AegonPolicyRepository;
+use App\Repository\PolicyRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -61,10 +63,14 @@ class ClientsController extends AbstractController
     /**
      * @Route("/Client{slug}", name="app_clientsPage")
      */
-    public function clientsPage($slug, EntityManagerInterface $em, AegonPolicyRepository $aegonRepo)
+    public function clientsPage($slug, EntityManagerInterface $em, Request $request, AegonPolicyRepository $aegonRepo, PolicyRepository $policyRepo)
     {
 
-        $policies = $aegonRepo->findBy([], ['id' => 'DESC']);
+        $CID = $request->query->get('CID');
+
+        $policies = $aegonRepo->findAllWithSearch($CID);
+
+        $Allpolicies = $policyRepo->findAllPolicyWithSearch($CID);
 
         $repository = $em->getRepository(Clients::class);
         /** @var Clients $client */
@@ -79,6 +85,7 @@ class ClientsController extends AbstractController
             'title' => 'Client',
             'client' => $client,
             'policies' => $policies,
+            'allpolicies' => $Allpolicies,
         ]);
     }
 

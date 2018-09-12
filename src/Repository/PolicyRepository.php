@@ -19,6 +19,29 @@ class PolicyRepository extends ServiceEntityRepository
         parent::__construct($registry, Policy::class);
     }
 
+    /**
+     * @param int|string $slug
+     * @return Policy[]
+     */
+
+    public function findAllPolicyWithSearch(?string $term)
+    {
+        $CID = $this->createQueryBuilder('c')
+        ->Join('c.aegonPolicy','a')
+        ->addSelect('a');
+
+        if($term) {
+            $CID->andWhere('c.client = :term')
+                ->setParameter('term',$term)
+            ;
+
+            return $CID
+                ->orderBy('c.id','DESC')
+                ->getQuery()
+                ->getResult();
+        }
+    }
+
 //    /**
 //     * @return Policy[] Returns an array of Policy objects
 //     */

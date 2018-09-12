@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\AegonPolicy;
+use App\Entity\Policy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -20,8 +21,28 @@ class AegonPolicyRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int|null $slug
+     * @param int|string $slug
+     * @return Policy[]
      */
+
+    public function findAllWithSearch(?string $term)
+    {
+        $CID = $this->createQueryBuilder('c')
+        ->innerJoin('c.policy', 'a');
+
+        if($term) {
+            $CID->andWhere('c.reference = :term')
+            ->setParameter('term',$term)
+            ;
+
+            return $CID
+                ->orderBy('c.id','DESC')
+                ->getQuery()
+                ->getResult();
+        }
+
+    }
+
 /*    public function GetAegonPoliciesByIdQueryBuilder(?int $slug)
     {
 

@@ -161,14 +161,42 @@
                                     <td>{{ policy.coverAmount }}</td>
                                     <td></td>
                                 </tr>
-{% endfor %}
+{% else %}
                                     <tr>
                                         <td colspan="8" class="text-center">No Policies found</td>
                                     </tr>
-
+{% endfor %}
                             </tbody>
                         </table>
+                    </div>
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                <th>Insurer</th>
+                                <th>Policy</th>
+                                <th>Client</th>
+                                <th>Status</th>
+                                </thead>
+                                <tbody>
+{% for all in allpolicies %}
 
+    <tr>
+        <td>{{ all.insurer }}</td>
+        <td><a href="#"</a>
+            {{ all.reference }}</td>
+        <td>{{ all.policyHolder }}</td>
+        <td>{{ all.status }}</td>
+    </tr>
+    {% else %}
+<tr>
+    <td colspan="5" class="text-center">No Policies found</td>
+</tr>
+
+
+{% endfor %}
+
+                                </tbody>
+                            </table>
                     </div>
                     
                 </div>
