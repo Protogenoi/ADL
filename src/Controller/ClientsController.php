@@ -36,6 +36,7 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Repository\AegonPolicyRepository;
 use App\Repository\PolicyRepository;
+use App\Repository\TimelineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,7 +64,7 @@ class ClientsController extends AbstractController
     /**
      * @Route("/Client{slug}", name="app_clientsPage")
      */
-    public function clientsPage($slug, EntityManagerInterface $em, Request $request, AegonPolicyRepository $aegonRepo, PolicyRepository $policyRepo)
+    public function clientsPage($slug, EntityManagerInterface $em, Request $request, AegonPolicyRepository $aegonRepo, PolicyRepository $policyRepo, TimelineRepository $timelineRepository)
     {
 
         $CID = $request->query->get('CID');

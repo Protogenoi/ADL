@@ -253,6 +253,37 @@
                 </div>
                 <div class="tab-pane fade" id="pills-timeline" role="tabpanel" aria-labelledby="pills-timeline-tab">
                     Timeline
+
+                    <div class="row">
+                        <table class="table table-hover table-sm">
+                            <thead class="thead-light">
+                            <th>Date</th>
+                            <th>User</th>
+                            <th>Type</th>
+                            <th>Message</th>
+                            </thead>
+                            <tbody>
+
+                            {% for timeine in client.timelines %}
+
+                                <tr>
+                                    <td>{{ timeine.addedDate| date('Y-m-d') }}</td>
+                                    <td>{{ timeine.addedBy }}</td>
+                                    <td>{{ timeine.notetype }}</td>
+                                    <td>{{ timeine.message }}</td>
+                                </tr>
+
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center">No timeline found</td>
+                                </tr>
+
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <div class="tab-pane fade" id="pills-uploads" role="tabpanel" aria-labelledby="pills-uploads-tab">Files
                     and Uploads
