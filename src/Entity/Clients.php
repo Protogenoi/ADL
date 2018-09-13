@@ -138,9 +138,15 @@ class Clients
      */
     private $policies;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Timeline", mappedBy="client")
+     */
+    private $timelines;
+
     public function __construct()
     {
         $this->policies = new ArrayCollection();
+        $this->timelines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -449,6 +455,37 @@ class Clients
             // set the owning side to null (unless already changed)
             if ($policy->getClient() === $this) {
                 $policy->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Timeline[]
+     */
+    public function getTimelines(): Collection
+    {
+        return $this->timelines;
+    }
+
+    public function addTimeline(Timeline $timeline): self
+    {
+        if (!$this->timelines->contains($timeline)) {
+            $this->timelines[] = $timeline;
+            $timeline->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTimeline(Timeline $timeline): self
+    {
+        if ($this->timelines->contains($timeline)) {
+            $this->timelines->removeElement($timeline);
+            // set the owning side to null (unless already changed)
+            if ($timeline->getClient() === $this) {
+                $timeline->setClient(null);
             }
         }
 

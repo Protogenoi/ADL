@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\AegonPolicy;
 use App\Entity\Clients;
 use App\Entity\Policy;
+use App\Entity\Timeline;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ClientsFixtures extends BaseFixtures
@@ -48,6 +49,14 @@ class ClientsFixtures extends BaseFixtures
                 $aegon->setType('LTA');
                 $aegon->setTerm(rand(5, 65));
                 $manager->persist($aegon);
+
+                $timeline = new Timeline();
+                $timeline->setAddedDate($this->faker->dateTime);
+                $timeline->setAddedBy($this->faker->name);
+                $timeline->setNotetype('ADL Alert');
+                $timeline->setMessage($this->faker->paragraph);
+                $timeline->setClient($client);
+                $manager->persist($timeline);
 
                 $policy = new Policy();
                 $policy->setAgent($this->faker->name);
