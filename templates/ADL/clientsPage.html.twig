@@ -187,60 +187,40 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row">
-                        <table class="table table-hover table-sm">
-                            <thead class="thead-light">
-                            <th>Client</th>
-                            <th>Policy</th>
-                            <th>Type</th>
-                            <th>Comm Type</th>
-                            <th>Term</th>
-                            <th>Premium</th>
-                            <th>Cover</th>
-                            <th>Status</th>
-                            </thead>
-                            <tbody>
-                            {% for policy in policies %}
-                                <tr>
-                                    <td>{{ policy.commission }}</td>
-                                    <td><a href="#"</a>
-                                        {{ policy.reference }}</td>
-                                    <td>{{ policy.type }}</td>
-                                    <td>{{ policy.commType }}</td>
-                                    <td>{{ policy.term }}</td>
-                                    <td>{{ policy.premium }}</td>
-                                    <td>{{ policy.coverAmount }}</td>
-                                    <td></td>
-                                </tr>
-                            {% else %}
-                                <tr>
-                                    <td colspan="8" class="text-center">No Policies found</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+
                     <div class="row">
                         <table class="table table-hover table-sm">
                             <thead class="thead-light">
                             <th>Insurer</th>
                             <th>Policy</th>
                             <th>Client</th>
+                            <th>Type</th>
+                            <th>Comm Type</th>
+                            <th>Term</th>
+                            <th>Prem</th>
+                            <th>Cover</th>
                             <th>Status</th>
                             </thead>
                             <tbody>
-                            {% for all in allpolicies %}
+
+                            {% for policies in client.policies %}
 
                                 <tr>
-                                    <td>{{ all.insurer }}</td>
+                                    <td>{{ policies.insurer }}</td>
                                     <td><a href="#"</a>
-                                        {{ all.reference }}</td>
-                                    <td>{{ all.policyHolder }}</td>
-                                    <td>{{ all.status }}</td>
+                                        {{ policies.reference }}</td>
+                                    <td>{{ policies.policyHolder }}</td>
+                                    <td>{{ policies.aegonPolicy.type }}</td>
+                                    <td>{{ policies.aegonPolicy.commType }}</td>
+                                    <td>{{ policies.aegonPolicy.term }}</td>
+                                    <td>{{ policies.aegonPolicy.premium }}</td>
+                                    <td>{{ policies.aegonPolicy.coverAmount }}</td>
+                                    <td>{{ policies.status }}</td>
                                 </tr>
+
                             {% else %}
                                 <tr>
-                                    <td colspan="5" class="text-center">No Policies found</td>
+                                    <td colspan="9" class="text-center">No Policies found</td>
                                 </tr>
 
 
