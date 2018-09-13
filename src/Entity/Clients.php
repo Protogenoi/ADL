@@ -143,10 +143,16 @@ class Clients
      */
     private $timelines;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Uploads", mappedBy="client")
+     */
+    private $uploads;
+
     public function __construct()
     {
         $this->policies = new ArrayCollection();
         $this->timelines = new ArrayCollection();
+        $this->uploads = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -486,6 +492,37 @@ class Clients
             // set the owning side to null (unless already changed)
             if ($timeline->getClient() === $this) {
                 $timeline->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Uploads[]
+     */
+    public function getUploads(): Collection
+    {
+        return $this->uploads;
+    }
+
+    public function addUpload(Uploads $upload): self
+    {
+        if (!$this->uploads->contains($upload)) {
+            $this->uploads[] = $upload;
+            $upload->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUpload(Uploads $upload): self
+    {
+        if ($this->uploads->contains($upload)) {
+            $this->uploads->removeElement($upload);
+            // set the owning side to null (unless already changed)
+            if ($upload->getClient() === $this) {
+                $upload->setClient(null);
             }
         }
 
