@@ -272,13 +272,14 @@
                             </thead>
                             <tbody>
 
-                            {% for timeine in client.timelines %}
+
+                            {% for timeline in client.timelines %}
 
                                 <tr>
-                                    <td>{{ timeine.addedDate| date('Y-m-d') }}</td>
-                                    <td>{{ timeine.addedBy }}</td>
-                                    <td>{{ timeine.notetype }}</td>
-                                    <td>{{ timeine.message }}</td>
+                                    <td>{{ timeline.addedDate| date('Y-m-d') }}</td>
+                                    <td>{{ timeline.addedBy }}</td>
+                                    <td>{{ timeline.notetype }}</td>
+                                    <td>{{ timeline.message }}</td>
                                 </tr>
 
                             {% else %}
