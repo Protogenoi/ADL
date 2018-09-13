@@ -18,11 +18,12 @@
                     <li class="nav-item">
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-timeline" role="tab"
                            aria-controls="pills-timeline" aria-selected="false">Timeline <span
-                                    class="badge badge-pill badge-warning">5</span></a>
+                                    class="badge badge-pill badge-warning">{{ client.timelines|length }}</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-uploads" role="tab"
-                           aria-controls="pills-uploads" aria-selected="false">Files & Uploads</a>
+                           aria-controls="pills-uploads" aria-selected="false">Files <span
+                                    class="badge badge-pill badge-warning">{{ client.uploads|length }}</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-financials"
@@ -381,6 +382,30 @@
                                 <a href="#" class="list-group-item list-group-item-action"><i
                                             class="fas fa-headphones"></i>
                                     Closer call recording | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
+                            {% if(uploads.type == 'Agent call recording') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-headphones"></i>
+                                    Agent call recording | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
+                            {% if(uploads.type == 'Dealsheet') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-file-pdf"></i>
+                                    Dealsheet | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
+                            {% if(uploads.type == 'Other') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-file-pdf"></i>
+                                    Other | {{ uploads.fileName }} </a>
 
                             {% endif %}
 
