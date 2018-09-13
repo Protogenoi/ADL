@@ -377,6 +377,14 @@
 
                         {% for uploads in client.uploads %}
 
+                            {% if(uploads.type == 'Admin call recording') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-headphones"></i>
+                                    Admin call recording | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
                             {% if(uploads.type == 'Closer call recording') %}
 
                                 <a href="#" class="list-group-item list-group-item-action"><i
