@@ -82,7 +82,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                    <button class="input-group btn btn-primary"><i class="fas fa-envelope"></i></button>
+                                    <button class="input-group btn btn-primary" data-toggle="modal" data-target="#emailModal"><i class="fas fa-envelope"></i></button>
                                 </div>
                                 <input class="form-control form-control-sm" type="text" value="{{ client.email }}"
                                        readonly>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button class="input-group btn btn-primary"><i class="fas fa-envelope"></i></button>
+                                        <button class="input-group btn btn-secondary"><i class="fas fa-envelope"></i></button>
                                     </div>
                                     <input class="form-control form-control-sm" type="text"
                                            value="{{ client.email2 }}" readonly>
@@ -276,7 +276,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="phoneNumberModalLabel"><i class="far fa-comment-dots"></i> Send SMS</h5>
+                    <h5 class="modal-title" id="phoneNumberModalLabel"><i class="far fa-comment-dots"></i> SMS</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -348,6 +348,96 @@
                         <div class="form-row text-center">
                             <div class="col-12">
                         <button type="button" class="btn btn-outline-success">Send custom SMS</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailModalLabel"><i class="fas fa-envelope"></i> Emails</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <span class="badge badge-primary"><h4>Email Template</h4></span>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="SendEmail">Email</label>
+                            <select class="form-control form-control-sm" id="SendEmail" required>
+                                <option>{{ client.email }}</option>
+                                {% if(client.email2) %}
+                                    <option>{{ client.email2 }}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="InsurerEmailTemplate">Insurer</label>
+                            <select class="form-control form-control-sm" id="InsurerEmailTemplate" required>
+                                <option>Aegon</option>
+                                <option>Legal and General</option>
+                                <option>Vitality</option>
+                                <option>Royal London</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EmailTemplate">Email Templates</label>
+                            <select class="form-control form-control-sm" id="EmailTemplate" required>
+                                <option>Welcome</option>
+                                <option>Keyfacts</option>
+                                <option>Contact us</option>
+                                <option>Direct Debit</option>
+                                <option>Reminder</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row text-center">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-outline-success">Send Email</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <br>
+
+                    <form>
+
+                        <span class="badge badge-primary"><h4>Custom Email</h4></span>
+
+                        <div class="form-group">
+                            <label for="SendCustomEmail">Email</label>
+                            <select class="form-control form-control-sm" id="SendCustomEmail" required>
+                                <option>{{ client.email }}</option>
+                                {% if(client.altNumber) %}
+                                    <option>{{ client.email2 }}</option>
+                                {% endif %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="SendCustomEmailMSG"></label>
+                            <textarea class="form-control" id="SendCustomEmailMSG" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-row text-center">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-outline-success">Send custom Email</button>
                             </div>
                         </div>
 
