@@ -6,6 +6,7 @@ use App\Entity\AegonPolicy;
 use App\Entity\Clients;
 use App\Entity\Policy;
 use App\Entity\Timeline;
+use App\Entity\Uploads;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class ClientsFixtures extends BaseFixtures
@@ -37,42 +38,57 @@ class ClientsFixtures extends BaseFixtures
                     ->setAddedDate($this->faker->dateTimeThisMonth)
                     ->setOwner('E Corp');
 
-                $aegon = new AegonPolicy();
-                $aegon->setReference(($this->faker->creditCardNumber));
-                $aegon->setAppID($this->faker->creditCardNumber);
-                $aegon->setCbTerm(rand(1, 42));
-                $aegon->setCommission(rand(100, 5000));
-                $aegon->setCommType('Indemnity');
-                $aegon->setCoverAmount(rand(1000, 500000));
-                $aegon->setDrip(rand(1, 5));
-                $aegon->setPremium(rand(10,60));
-                $aegon->setType('LTA');
-                $aegon->setTerm(rand(5, 65));
-                $manager->persist($aegon);
+                for ($i = 0; $i < 5; $i++) {
 
-                $timeline = new Timeline();
-                $timeline->setAddedDate($this->faker->dateTime);
-                $timeline->setAddedBy($this->faker->name);
-                $timeline->setNotetype('ADL Alert');
-                $timeline->setMessage($this->faker->paragraph);
-                $timeline->setClient($client);
-                $manager->persist($timeline);
+                    $aegon = new AegonPolicy();
+                    $aegon->setReference(($this->faker->creditCardNumber));
+                    $aegon->setAppID($this->faker->creditCardNumber);
+                    $aegon->setCbTerm(rand(1, 42));
+                    $aegon->setCommission(rand(100, 5000));
+                    $aegon->setCommType('Indemnity');
+                    $aegon->setCoverAmount(rand(1000, 500000));
+                    $aegon->setDrip(rand(1, 5));
+                    $aegon->setPremium(rand(10, 60));
+                    $aegon->setType('LTA');
+                    $aegon->setTerm(rand(5, 65));
+                    $manager->persist($aegon);
 
-                $policy = new Policy();
-                $policy->setAgent($this->faker->name);
-                $policy->setCloser($this->faker->name);
-                $policy->setQc($this->faker->name);
-                $policy->setPolicyHolder($this->faker->name);
-                $policy->setInsurer($this->faker->company);
-                $policy->setReference($this->faker->creditCardNumber);
-                $policy->setStatus('Live');
-                $policy->setSaleDate($this->faker->dateTimeThisMonth);
-                $policy->setSubDate($this->faker->dateTimeThisMonth);
-                $policy->setAddedDate($this->faker->dateTimeThisMonth);
-                $policy->setAddedBy($this->faker->name);
-                $policy->setAegonPolicy($aegon);
-                $manager->persist($policy);
-                $policy->setClient($client);
+                    $timeline = new Timeline();
+                    $timeline->setAddedDate($this->faker->dateTime);
+                    $timeline->setAddedBy($this->faker->name);
+                    $timeline->setNotetype('ADL Alert');
+                    $timeline->setMessage($this->faker->paragraph);
+                    $timeline->setClient($client);
+                    $manager->persist($timeline);
+
+                    $uploads = new Uploads();
+                    $uploads->setAddedBy($this->faker->name);
+                    $uploads->setAddedDate($this->faker->dateTime);
+                    $uploads->setSize(rand(10, 500));
+                    $uploads->setFile($this->faker->fileExtension);
+                    $uploads->setFileName('James closer call recording.wav');
+                    $uploads->setType('Closer call recording');
+                    $uploads->setClient($client);
+                    $manager->persist($uploads);
+
+
+                    $policy = new Policy();
+                    $policy->setAgent($this->faker->name);
+                    $policy->setCloser($this->faker->name);
+                    $policy->setQc($this->faker->name);
+                    $policy->setPolicyHolder($this->faker->name);
+                    $policy->setInsurer($this->faker->company);
+                    $policy->setReference($this->faker->creditCardNumber);
+                    $policy->setStatus('Live');
+                    $policy->setSaleDate($this->faker->dateTimeThisMonth);
+                    $policy->setSubDate($this->faker->dateTimeThisMonth);
+                    $policy->setAddedDate($this->faker->dateTimeThisMonth);
+                    $policy->setAddedBy($this->faker->name);
+                    $policy->setAegonPolicy($aegon);
+                    $manager->persist($policy);
+                    $policy->setClient($client);
+
+                }
 
 
             });

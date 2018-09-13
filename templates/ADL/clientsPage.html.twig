@@ -373,6 +373,19 @@
                         <a href="#" class="list-group-item list-group-item-action"><i class="far fa-envelope"></i> My
                             Account Details Email</a>
                         <a href="#" class="list-group-item list-group-item-primary">Uploads</a>
+
+                        {% for uploads in client.uploads %}
+
+                            {% if(uploads.type == 'Closer call recording') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-headphones"></i>
+                                    Closer call recording | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
+                        {% endfor %}
+
                         <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-headphones"></i>
                             Closer call recording</a>
                         <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-headphones"></i>
