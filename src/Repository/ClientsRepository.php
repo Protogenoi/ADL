@@ -28,7 +28,8 @@ class ClientsRepository extends ServiceEntityRepository
     {
 
     $qb = $this->createQueryBuilder('c')
-    ->leftJoin('c.policies', 'a');
+        ->leftJoin('c.policies', 'a')
+        ->addSelect('a');
 
     if($term) {
         $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term OR a.reference LIKE :term')
