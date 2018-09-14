@@ -27,12 +27,10 @@ class ClientsRepository extends ServiceEntityRepository
     public function getWithSearchQueryBuilder(?string $term): QueryBuilder
     {
 
-    $qb = $this->createQueryBuilder('c')
-        ->leftJoin('c.policies', 'a')
-        ->addSelect('a');
+        $qb = $this->createQueryBuilder('c');
 
     if($term) {
-        $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term OR a.reference LIKE :term')
+        $qb->andWhere('c.firstName LIKE :term OR c.lastName LIKE :term OR c.firstName2 LIKE :term OR c.lastName2 LIKE :term OR c.phoneNumber LIKE :term OR c.postcode LIKE :term OR c.owner LIKE :term')
         ->setParameter('term', '%'.$term.'%');
     }
 
