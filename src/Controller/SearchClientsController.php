@@ -19,11 +19,8 @@ class SearchClientsController extends AbstractController
         $q = $request->query->get('q');
         $queryBuilder = $repository->getWithSearchQueryBuilder($q);
 
-        $pagination = $paginator->paginate(
-            $queryBuilder, /* query NOT result */
-            $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
-        );
+        $pagination = $paginator->paginate($queryBuilder,
+            $request->query->getInt('page', 1), 5);
 
         return $this->render('search_clients/index.html.twig', [
             'title' => 'Search Clients',
