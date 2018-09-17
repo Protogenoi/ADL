@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Policy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -24,7 +25,7 @@ class PolicyRepository extends ServiceEntityRepository
      * @return Policy[]
      */
 
-    public function findAllPolicyWithSearch(?string $term)
+    public function BLANKBANKL(?string $term)
     {
         $CID = $this->createQueryBuilder('c')
         ->Join('c.aegonPolicy','a')
@@ -40,6 +41,22 @@ class PolicyRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
         }
+    }
+
+    public function findAllPolicyWithSearch(?string $term): QueryBuilder
+    {
+
+        $qb = $this->createQueryBuilder('c');
+
+        if ($term) {
+            $qb->andWhere('c.insurer LIKE :term OR c.reference LIKE :term OR c.status LIKE :term OR c.policyHolder LIKE :term OR c.subDate LIKE :term OR c.saleDate LIKE :term')
+                ->setParameter('term', '%' . $term . '%');
+        }
+
+        return $qb
+            ->orderBy('c.saleDate', 'DESC');
+
+
     }
 
 //    /**

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        <div class="row">
+            <ul class="ca-menu">
+                <li>
+                    <a href="#">
+                        <span class="ca-icon"><i class="fas fa-user-plus"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Add new<br/> client</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('search_clients') }}">
+                        <span class="ca-icon"><i class="fas fa-search"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Search by<br/> client</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="row">
+
+            <form class="form-inline">
+                <div class="input-group mb-2 mr-sm-2">
+                    <input type="text"
+                           name="q"
+                           class="form-control"
+                           placeholder="Search..."
+                           value="{{ app.request.query.get('q') }}"
+                    >
+                </div>
+                <div class="input-group mb-2 mr-sm-2">
+                    <input type="text"
+                           name="q"
+                           class="form-control"
+                           placeholder="Search..."
+                           value="Policies found ({{ policy.getTotalItemCount }})"
+                           disabled
+                    >
+                </div>
+                <div class="input-group mb-2 mr-sm-2">
+                    <button type="submit"
+                            class="btn btn-outline-secondary">
+                        <span class="fas fa-search"></span>
+                    </button>
+                </div>
+            </form>
+
+            <table class="table">
+                <thead>
+                <th>Sale Date</th>
+                <th>Sub Date</th>
+                <th>Policy Holder</th>
+                <th>Policy</th>
+                <th>Insurer</th>
+                <th>Status</th>
+                </thead>
+                <tbody>
+                {% for policies in policy %}
+                    <tr>
+                        <td>
+                            {{ policies.saleDate| date('Y-m-d') }}
+                        </td>
+                        <td>
+                            {{ policies.subDate| date('Y-m-d') }}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_clientsPage', {slug: policies.client.id}) }}">
+                                {{ policies.policyHolder }}
+                            </a>
+                        <td>
+                            {{ policies.reference }}
+                        </td>
+                        <td>
+                            {{ policies.insurer }}
+                        </td>
+                        <td>
+                            {{ policies.status }}
+                        </td>
+
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No policies found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {{ knp_pagination_render(policy) }}
+
+        </div>
+    </div>
+{% endblock %}
