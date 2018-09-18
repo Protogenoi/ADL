@@ -251,7 +251,9 @@
 
                                     {% endif %}
 
-                                    <td><a href="{{ path(view_policy) }}" class="btn btn-sm btn-info"><i
+                                    <td>
+                                        <a href="{{ path(view_policy) }}?PID={{ policies.id }}&CID={{ policies.client.id }}"
+                                           class="btn btn-sm btn-info"><i
                                                     class="fas fa-search"></i></a></td>
                                     <td><a href="{{ path('edit_aegon_policies') }}" class=" btn btn-sm btn-warning"><i
                                                     class="far fa-edit"></i></a></td>
