@@ -240,6 +240,7 @@
 
 
                                         {% set view_policy = 'view_aegon_policies' %}
+                                        {% set edit_policy = 'edit_aegon_policies' %}
 
                                     {% elseif(policies.insurer == 'Vitality') %}
 
@@ -248,6 +249,7 @@
                                     {% else %}
 
                                         {% set view_policy = 'view_aegon_policies' %}
+                                        {% set edit_policy = 'edit_aegon_policies' %}
 
                                     {% endif %}
 
@@ -255,7 +257,9 @@
                                         <a href="{{ path(view_policy) }}?PID={{ policies.id }}&CID={{ policies.client.id }}"
                                            class="btn btn-sm btn-info"><i
                                                     class="fas fa-search"></i></a></td>
-                                    <td><a href="{{ path('edit_aegon_policies') }}" class=" btn btn-sm btn-warning"><i
+                                    <td>
+                                        <a href="{{ path(edit_policy) }}?PID={{ policies.id }}&CID={{ policies.client.id }}"
+                                           class=" btn btn-sm btn-warning"><i
                                                     class="far fa-edit"></i></a></td>
                                     <td><a href="" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
 

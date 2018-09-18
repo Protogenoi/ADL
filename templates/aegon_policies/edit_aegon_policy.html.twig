@@ -5,4 +5,39 @@
 
     {{ parent() }}
 
+
+    <p>CID = {{ CID }}<br>
+        PID = {{ PID }}</p>
+
+
+
+    <p>Holder: {{ policy.policyHolder }}<br></p>
+    <p>Ref: {{ policy.reference }}<br></p>
+    <p>Status: {{ policy.status }}<br></p>
+    <p>Insurer: {{ policy.insurer }}<br></p>
+    <p>Added by: {{ policy.addedBy }}<br></p>
+    <p>Added date: {{ policy.addedDate| date('Y-m-d') }}<br></p>
+    <p>Agent: {{ policy.agent }}<br></p>
+    <p>QC: {{ policy.qc }}<br></p>
+    <p>Sale Date: {{ policy.saleDate| date('Y-m-d') }}<br></p>
+    <p>Sub Date: {{ policy.subDate| date('Y-m-d') }}<br></p>
+    <p>Updated by: {{ policy.updatedBy }}<br></p>
+    <p>Updated date: {{ policy.updatedDate| date('Y-m-d') }}<br></p>
+
+    <br>
+    <h3>Aegon</h3>
+    <p>ID: {{ policy.aegonPolicy.id }}<br></p>
+    <p>Type: {{ policy.aegonPolicy.type }}<br></p>
+    <p>App ID: {{ policy.aegonPolicy.appID }}<br></p>
+    <p>Ref: {{ policy.aegonPolicy.reference }}<br></p>
+    <p>Comm Type: {{ policy.aegonPolicy.commType }}<br></p>
+    <p>Term: {{ policy.aegonPolicy.term }}<br></p>
+    <p>Prem: {{ policy.aegonPolicy.premium }}<br></p>
+    <p>Cover Amount: {{ policy.aegonPolicy.coverAmount }}<br></p>
+    <p>Comm: {{ policy.aegonPolicy.commission }}<br></p>
+    <p>CB Term: {{ policy.aegonPolicy.cbTerm }}<br></p>
+    <p>Drip: {{ policy.aegonPolicy.drip }}<br></p>
+    <p>Non-idem Comm: {{ policy.aegonPolicy.nonIdemComm }}<br></p>
+
+
 {% endblock %}
