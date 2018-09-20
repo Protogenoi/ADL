@@ -59,6 +59,30 @@ class PolicyRepository extends ServiceEntityRepository
 
     }
 
+    public function findAllPolicySalesWithSearch(
+        $datefrom,
+        $dateto
+    ): QueryBuilder {
+
+        $qb = $this->createQueryBuilder('c');
+
+
+        if ($datefrom) {
+
+            $datefrom = new \DateTime($datefrom . " 00:00:00");
+            $dateto = new \DateTime($dateto . " 23:59:59");
+
+            $qb->andWhere('c.saleDate BETWEEN :datefrom AND :dateto')
+                ->setParameter('datefrom', $datefrom)
+                ->setParameter('dateto', $dateto);
+        }
+
+        return $qb
+            ->orderBy('c.saleDate', 'DESC');
+
+
+    }
+
 //    /**
 //     * @return Policy[] Returns an array of Policy objects
 //     */
