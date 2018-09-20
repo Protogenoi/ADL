@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/security", name="app_login")
+     * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
@@ -25,5 +25,15 @@ class SecurityController extends AbstractController
             'username' => $lastUsername,
             'error' => $error,
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+
+        throw new \Exception('will be intercepted before getting here');
+
     }
 }
