@@ -32,15 +32,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('search_sales') }}">
+                    <a href="{{ path('search_clients') }}">
                         <span class="ca-icon"><i class="fas fa-search"></i></span>
                         <div class="ca-content">
-                            <h2 class="ca-main">Search <br/> sales</h2>
+                            <h2 class="ca-main">Search by<br/> policy</h2>
                             <h3 class="ca-sub"></h3>
                         </div>
                     </a>
                 </li>
-
             </ul>
 
         </div>
@@ -50,10 +49,18 @@
             <form class="form-inline">
                 <div class="input-group mb-2 mr-sm-2">
                     <input type="text"
-                           name="q"
+                           name="datefrom"
                            class="form-control"
-                           placeholder="Search..."
-                           value="{{ app.request.query.get('q') }}"
+                           placeholder="Date from"
+                           value="{{ app.request.query.get('datefrom') }}"
+                    >
+                </div>
+                <div class="input-group mb-2 mr-sm-2">
+                    <input type="text"
+                           name="dateto"
+                           class="form-control"
+                           placeholder="Date to"
+                           value="{{ app.request.query.get('dateto') }}"
                     >
                 </div>
                 <div class="input-group mb-2 mr-sm-2">
@@ -71,6 +78,12 @@
                         <span class="fas fa-search"></span>
                     </button>
                 </div>
+                <div class="input-group mb-2 mr-sm-2">
+                    <a href="{{ path('search_sales') }}"
+                       class="btn btn-outline-secondary btn-outline-danger">
+                        <span class="fas fa-recycle"></span>
+                    </a>
+                </div>
             </form>
 
             <table class="table">
@@ -78,6 +91,9 @@
                 <th>Sale Date</th>
                 <th>Sub Date</th>
                 <th>Policy Holder</th>
+                <th>Lead Agent</th>
+                <th>Closer</th>
+                <th>QC Agent</th>
                 <th>Policy</th>
                 <th>Insurer</th>
                 <th>Status</th>
@@ -95,6 +111,15 @@
                             <a href="{{ path('app_clientsPage', {slug: policies.client.id}) }}">
                                 {{ policies.policyHolder }}
                             </a>
+                        <td>
+                            {{ policies.agent }}
+                        </td>
+                        <td>
+                            {{ policies.closer }}
+                        </td>
+                        <td>
+                            {{ policies.qc }}
+                        </td>
                         <td>
                             {{ policies.reference }}
                         </td>
