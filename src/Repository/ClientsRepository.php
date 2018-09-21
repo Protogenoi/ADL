@@ -45,13 +45,11 @@ class ClientsRepository extends ServiceEntityRepository
     ): QueryBuilder {
 
         $qb = $this->createQueryBuilder('c')
-            ->LEFTJoin('c.uploads', 'a')
-            ->addSelect('a');
-
+            ->LEFTJoin('c.uploads', 'a');
 
         if ($option) {
 
-            $qb->andWhere('a.type = :option AND a.client IS NULL')
+            $qb->andWhere('a.type = :option')
                 ->setParameter('option', $option);
         }
 
