@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container">
+        <br>
+        <div class="row">
+
+            <form class="form-inline">
+                <div class="input-group mb-2 mr-sm-2">
+                    <select type="text"
+                            name="option"
+                            class="form-control"
+                            value="{{ app.request.query.get('option') }}"
+                    >
+                        <option value="Closer call recording">Closer Call Recording</option>
+                        <option value="Agent call recording">Agent Call Recording</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2">
+                    <button type="submit"
+                            class="btn btn-outline-secondary">
+                        <span class="fas fa-search"></span>
+                    </button>
+                </div>
+                <div class="input-group mb-2 mr-sm-2">
+                    <a href="{{ path('app_missing_uploads') }}"
+                       class="btn btn-outline-secondary btn-outline-danger">
+                        <span class="fas fa-recycle"></span>
+                    </a>
+                </div>
+        </div>
+
+        </form>
+
+        <table class="table">
+            <thead>
+            <th>Date</th>
+            <th>Client Name</th>
+            </thead>
+            <tbody>
+            {% for client in result %}
+                <tr>
+                    <td>
+                        {{ client.addedDate| date('Y-m-d') }}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_clientsPage', {slug: client.id}) }}">
+                            {{ client.title }} {{ client.firstName }} {{ client.lastName }}
+                            <br>
+                            {{ client.title2 }} {{ client.firstName2 }} {{ client.lastName2 }}
+                        </a>
+                    </td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td colspan="2" class="text-center">No missing uploads found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(result) }}
+
+    </div>
+    </div>
+
+{% endblock %}

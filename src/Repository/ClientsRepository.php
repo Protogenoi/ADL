@@ -40,6 +40,27 @@ class ClientsRepository extends ServiceEntityRepository
 
     }
 
+    public function findAllMissingUploads(
+        $option
+    ): QueryBuilder {
+
+        $qb = $this->createQueryBuilder('c')
+            ->LEFTJoin('c.uploads', 'a')
+            ->addSelect('a');
+
+
+        if ($option) {
+
+            $qb->andWhere('a.type = :option AND a.client IS NULL')
+                ->setParameter('option', $option);
+        }
+
+        return $qb
+            ->orderBy('c.addedDate', 'DESC');
+
+
+    }
+
 //    /**
 //     * @return Clients[] Returns an array of Clients objects
 //     */

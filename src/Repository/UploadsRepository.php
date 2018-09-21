@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Uploads;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -18,6 +19,26 @@ class UploadsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Uploads::class);
     }
+
+
+    /*    public function findAllMissingUploads(
+            $option
+        ): QueryBuilder {
+
+            $qb = $this->createQueryBuilder('c');
+
+
+            if ($option) {
+
+                $qb->andWhere('c.type = :option')
+                    ->setParameter('option', $option);
+            }
+
+            return $qb
+                ->orderBy('c.addedDate', 'DESC');
+
+
+        }*/
 
 //    /**
 //     * @return Uploads[] Returns an array of Uploads objects
