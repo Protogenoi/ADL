@@ -42,19 +42,20 @@ class ClientsRepository extends ServiceEntityRepository
 
     public function findAllMissingUploads(
         $option
-    ): QueryBuilder {
+    ) {
 
-        $qb = $this->createQueryBuilder('c')
-            ->LEFTJoin('c.uploads', 'a');
+        $conn = $this->getEntityManager()
+            ->getConnection();
 
-        if ($option) {
 
-            $qb->andWhere('a.type = :option')
-                ->setParameter('option', $option);
-        }
+        $sql
+            = 'SELECT clients.id, clients.added_date, clients.title, clients.first_name, clients.last_name, clients.title2, clients.first_name2, clients.last_name2 FROM clients JOIN uploads ON clients.id = uploads.client_id WHERE clients.id NOT IN (SELECT uploads.client_id WHERE uploads.type=:option) GROUP BY clients.id ORDER BY clients.added_date';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':option', $option);
 
-        return $qb
-            ->orderBy('c.addedDate', 'DESC');
+
+        $stmt->execute();
+        return $stmt->fetchAll();
 
 
     }
