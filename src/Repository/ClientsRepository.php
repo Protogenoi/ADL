@@ -48,10 +48,21 @@ class ClientsRepository extends ServiceEntityRepository
             ->getConnection();
 
 
-        $sql
-            = 'SELECT clients.id, clients.added_date, clients.title, clients.first_name, clients.last_name, clients.title2, clients.first_name2, clients.last_name2 FROM clients JOIN uploads ON clients.id = uploads.client_id WHERE clients.id NOT IN (SELECT uploads.client_id WHERE uploads.type=:option) GROUP BY clients.id ORDER BY clients.added_date';
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':option', $option);
+        if ($option == 'Sent SMS: Welcome') {
+
+            $sql
+                = 'SELECT clients.id, clients.added_date, clients.title, clients.first_name, clients.last_name, clients.title2, clients.first_name2, clients.last_name2 FROM clients JOIN timeline ON clients.id = timeline.client_id WHERE clients.id NOT IN (SELECT timeline.client_id WHERE timeline.notetype=:option) GROUP BY clients.id ORDER BY clients.added_date';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':option', $option);
+
+        } else {
+
+            $sql
+                = 'SELECT clients.id, clients.added_date, clients.title, clients.first_name, clients.last_name, clients.title2, clients.first_name2, clients.last_name2 FROM clients JOIN uploads ON clients.id = uploads.client_id WHERE clients.id NOT IN (SELECT uploads.client_id WHERE uploads.type=:option) GROUP BY clients.id ORDER BY clients.added_date';
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':option', $option);
+
+        }
 
 
         $stmt->execute();
