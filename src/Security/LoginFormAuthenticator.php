@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
 use Symfony\Component\Security\Core\Security;
@@ -25,16 +26,20 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     private $csrfTokenManager;
 
+    private $passwordEncoder;
+
     public function __construct(
         UserRepository $userRepository,
         RouterInterface $router,
-        CsrfTokenManagerInterface $csrfTokenManager
+        CsrfTokenManagerInterface $csrfTokenManager,
+        UserPasswordEncoderInterface $passwordEncoder
     ) {
 
 
         $this->userRepository = $userRepository;
         $this->router = $router;
         $this->csrfTokenManager = $csrfTokenManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     public function supports(Request $request)
@@ -74,7 +79,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return true;
+        return $this->passwordEncoder->isPasswordValid($user,
+            $credentials['password']);
     }
 
     public function onAuthenticationFailure(
