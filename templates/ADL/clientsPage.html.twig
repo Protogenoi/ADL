@@ -431,6 +431,22 @@
 
                             {% endif %}
 
+                            {% if(uploads.type == 'Insurer Keyfacts') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-file-pdf"></i>
+                                    Dealsheet | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
+                            {% if(uploads.type == 'Insurer Application') %}
+
+                                <a href="#" class="list-group-item list-group-item-action"><i
+                                            class="fas fa-file-pdf"></i>
+                                    Dealsheet | {{ uploads.fileName }} </a>
+
+                            {% endif %}
+
                             {% if(uploads.type == 'Dealsheet') %}
 
                                 <a href="#" class="list-group-item list-group-item-action"><i
