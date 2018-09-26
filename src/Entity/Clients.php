@@ -148,11 +148,17 @@ class Clients
      */
     private $uploads;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SmsInbound", mappedBy="client")
+     */
+    private $smsInbounds;
+
     public function __construct()
     {
         $this->policies = new ArrayCollection();
         $this->timelines = new ArrayCollection();
         $this->uploads = new ArrayCollection();
+        $this->smsInbounds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -523,6 +529,37 @@ class Clients
             // set the owning side to null (unless already changed)
             if ($upload->getClient() === $this) {
                 $upload->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SmsInbound[]
+     */
+    public function getSmsInbounds(): Collection
+    {
+        return $this->smsInbounds;
+    }
+
+    public function addSmsInbound(SmsInbound $smsInbound): self
+    {
+        if (!$this->smsInbounds->contains($smsInbound)) {
+            $this->smsInbounds[] = $smsInbound;
+            $smsInbound->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSmsInbound(SmsInbound $smsInbound): self
+    {
+        if ($this->smsInbounds->contains($smsInbound)) {
+            $this->smsInbounds->removeElement($smsInbound);
+            // set the owning side to null (unless already changed)
+            if ($smsInbound->getClient() === $this) {
+                $smsInbound->setClient(null);
             }
         }
 
