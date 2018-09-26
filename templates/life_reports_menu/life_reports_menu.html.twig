@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+    <div class="container">
+        <div class="row">
+            <ul class="ca-menu">
+                <li>
+                    <a href="#">
+                        <span class="ca-icon"><i class="fas fa-pound-sign"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Financial<br/> Report</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="ca-icon"><i class="fas fa-exclamation"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Early Warning<br/> System</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="ca-icon"><i class="fas fa-list"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Policy statuses</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <span class="ca-icon"><i class="fas fa-download"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Export Data</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('app_sms_inbound') }}">
+                        <span class="ca-icon"><i class="fas fa-comment-dots"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">SMS Response</br> Report</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('app_keyfacts_email') }}">
+                        <span class="ca-icon"><i class="fas fa-envelope"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Keyfacts Email</br> Report</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('app_missing_uploads') }}">
+                        <span class="ca-icon"><i class="fas fa-upload"></i></span>
+                        <div class="ca-content">
+                            <h2 class="ca-main">Missing</br> Uploads</h2>
+                            <h3 class="ca-sub"></h3>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+{% endblock %}
