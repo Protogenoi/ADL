@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\AegonPolicy;
 use App\Entity\Clients;
+use App\Entity\KeyfactsEmails;
 use App\Entity\Policy;
 use App\Entity\Timeline;
 use App\Entity\Uploads;
@@ -87,6 +88,13 @@ class ClientsFixtures extends BaseFixtures
                     $policy->setAegonPolicy($aegon);
                     $manager->persist($policy);
                     $policy->setClient($client);
+
+
+                    $keyfactsEmail = new KeyfactsEmails();
+                    $keyfactsEmail->setAddedDate($this->faker->dateTime)
+                        ->setAddedBy($this->faker->name)
+                        ->setEmail($this->faker->email);
+                    $manager->persist($keyfactsEmail);
 
                 }
 
