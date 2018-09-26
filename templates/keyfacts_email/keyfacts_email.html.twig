@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    {% set foo = app.request.query.get('option') %}
+
+    <div class="container">
+        <br>
+        <div class="row">
+
+            <form class="form-inline">
+                <div class="input-group mb-2 mr-sm-2">
+                    <select type="text"
+                            name="option"
+                            class="form-control"
+                    >
+                        <option>Select...</option>
+                        <option value="Keyfacts attempted" {% if foo == 'Keyfacts attempted' %} selected {% endif %} >
+                            Keyfacts attempted
+                        </option>
+                        <option value="Keyfacts no attempts" {% if foo == 'Keyfacts no attempts' %} selected {% endif %}>
+                            Keyfacts no attempts
+                        </option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-2 mr-sm-2">
+                    <input type="text"
+                           class="form-control"
+                           value="Records found ({{ result.getTotalItemCount }})"
+                           disabled
+                    >
+
+                    <div class="input-group mb-2 mr-sm-2">
+                        <button type="submit"
+                                class="btn btn-outline-secondary">
+                            <span class="fas fa-search"></span>
+                        </button>
+                    </div>
+                    <div class="input-group mb-2 mr-sm-2">
+                        <a href="{{ path('app_keyfacts_email') }}"
+                           class="btn btn-outline-secondary btn-outline-danger">
+                            <span class="fas fa-recycle"></span>
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+
+            <table class="table table-sm table-hover">
+                <thead>
+                <th>Date</th>
+                <th>Email</th>
+                <th>Closer</th>
+                {% if foo == 'Keyfacts no attempts' %}
+                    <th>Dismiss?</th>
+                {% endif %}
+                </thead>
+                <tbody>
+                {% for row in result %}
+                    <tr>
+                        <td>
+                            {{ row.added_date| date('Y-m-d h:m:s') }}
+                        </td>
+                        <td>{% if foo == 'Keyfacts no attempts' %}
+                                <a href="{{ path('app_clientsPage', {slug: row.id}) }}">{{ row.email }}</a>
+
+                            {% else %}
+
+                                {{ row.email }}
+
+                            {% endif %}
+                        </td>
+                        <td>{{ row.closer }}</td>
+                        {% if foo == 'Keyfacts no attempts' %}
+                            <td><a href="#" class="btn btn-danger btn-sm"><i class="fas fa-check"></i></a></td>
+                        {% endif %}
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">No keyfacts emails found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {{ knp_pagination_render(result) }}
+
+        </div>
+    </div>
+
+{% endblock %}
