@@ -19,6 +19,27 @@ class SmsInboundRepository extends ServiceEntityRepository
         parent::__construct($registry, SmsInbound::class);
     }
 
+    public function findAllSMSInbound(
+        $option
+    ) {
+
+        $qb = $this->createQueryBuilder('c');
+
+        if ($option) {
+            $qb->andWhere('c.type = :option')
+                ->setParameter('option', $option);
+        }
+
+        return $qb
+            ->orderBy('c.addedDate', 'DESC');
+
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+
+    }
+
 //    /**
 //     * @return SmsInbound[] Returns an array of SmsInbound objects
 //     */

@@ -6,6 +6,7 @@ use App\Entity\AegonPolicy;
 use App\Entity\Clients;
 use App\Entity\KeyfactsEmails;
 use App\Entity\Policy;
+use App\Entity\SmsInbound;
 use App\Entity\Timeline;
 use App\Entity\Uploads;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -95,6 +96,33 @@ class ClientsFixtures extends BaseFixtures
                         ->setAddedBy($this->faker->name)
                         ->setEmail($this->faker->email);
                     $manager->persist($keyfactsEmail);
+
+                    $smsinbound = new SmsInbound();
+                    $smsinbound->setAddedDate($this->faker->dateTime)
+                        ->setType('Delivered')
+                        ->setClient($client)
+                        ->setPhone(rand(447111111111, 447999999999))
+                        ->setMessage('SMS delivered')
+                        ->setAddedDate($this->faker->dateTime);
+                    $manager->persist($smsinbound);
+
+                    $failedSMS = new SmsInbound();
+                    $failedSMS->setAddedDate($this->faker->dateTime)
+                        ->setType('Failed')
+                        ->setClient($client)
+                        ->setPhone(rand(447111111111, 447999999999))
+                        ->setMessage('SMS failed')
+                        ->setAddedDate($this->faker->dateTime);
+                    $manager->persist($failedSMS);
+
+                    $messSMS = new SmsInbound();
+                    $messSMS->setAddedDate($this->faker->dateTime)
+                        ->setType('Response')
+                        ->setClient($client)
+                        ->setPhone(rand(447111111111, 447999999999))
+                        ->setMessage('SMS Response')
+                        ->setAddedDate($this->faker->dateTime);
+                    $manager->persist($messSMS);
 
                 }
 
