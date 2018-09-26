@@ -59,20 +59,20 @@ class ClientsController extends AbstractController
     }
 
     /**
-     * @Route("/Client{slug}", name="app_clientsPage")
+     * @Route("/Client", name="app_clientsPage")
      */
-    public function clientsPage($slug, EntityManagerInterface $em, Request $request)
+    public function clientsPage(EntityManagerInterface $em, Request $request)
     {
 
         $CID = $request->query->get('CID');
 
         $repository = $em->getRepository(Clients::class);
         /** @var Clients $client */
-        $client = $repository->findOneBy(['id' => $slug]);
+        $client = $repository->findOneBy(['id' => $CID]);
 
         if (!$client) {
             throw $this->createNotFoundException(sprintf('No client found for "%s" found',
-                $slug));
+                $CID));
         }
 
         return $this->render('ADL/clientsPage.html.twig', [

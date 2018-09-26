@@ -71,7 +71,7 @@
                             {{ row.added_date| date('Y-m-d h:m:s') }}
                         </td>
                         <td>{% if foo == 'Keyfacts no attempts' %}
-                                <a href="{{ path('app_clientsPage', {slug: row.id}) }}">{{ row.email }}</a>
+                                <a href="{{ path('app_clientsPage', {CID: row.id}) }}">{{ row.email }}</a>
 
                             {% else %}
 

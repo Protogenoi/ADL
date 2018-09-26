@@ -108,7 +108,7 @@
                             {{ policies.subDate| date('Y-m-d') }}
                         </td>
                         <td>
-                            <a href="{{ path('app_clientsPage', {slug: policies.client.id}) }}">
+                            <a href="{{ path('app_clientsPage', {CID: policies.client.id}) }}">
                                 {{ policies.policyHolder }}
                             </a>
                         <td>

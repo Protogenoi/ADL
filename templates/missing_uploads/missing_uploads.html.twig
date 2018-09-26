@@ -78,7 +78,7 @@
                         {{ client.added_date| date('Y-m-d h:m:s') }}
                     </td>
                     <td>
-                        <a href="{{ path('app_clientsPage', {slug: client.id}) }}" target="_blank">
+                        <a href="{{ path('app_clientsPage', {CID: client.id}) }}" target="_blank">
                             {{ client.title }} {{ client.first_name }} {{ client.last_name }}
                             <br>
                             {{ client.title2 }} {{ client.first_name2 }} {{ client.last_name2 }}
