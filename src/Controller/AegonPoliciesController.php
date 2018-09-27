@@ -39,7 +39,7 @@ class AegonPoliciesController extends AbstractController
     }
 
     /**
-     * @Route("/aegon/edit/policies", name="edit_aegon_policies")
+     * @Route("/ADL/aegon/edit/policies", name="edit_aegon_policies")
      */
     public function editAegonPolicy(
         Request $request,

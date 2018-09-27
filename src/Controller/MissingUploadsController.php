@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MissingUploadsController extends AbstractController
 {
     /**
-     * @Route("/life/missing_uploads", name="app_missing_uploads")
+     * @Route("/ADL/life/missing_uploads", name="app_missing_uploads")
      */
     public function missingUploads(
         Request $request,

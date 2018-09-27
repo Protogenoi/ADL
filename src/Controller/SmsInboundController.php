@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SmsInboundController extends AbstractController
 {
     /**
-     * @Route("/sms/inbound", name="app_sms_inbound")
+     * @Route("/ADL/sms/inbound", name="app_sms_inbound")
      */
     public function smsInbound(
         Request $request,

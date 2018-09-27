@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchClientsController extends AbstractController
 {
     /**
-     * @Route("/search/clients", name="search_clients")
+     * @Route("/ADL/search/clients", name="search_clients")
      */
     public function index(ClientsRepository $repository, Request $request, PaginatorInterface $paginator)
     {

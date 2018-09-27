@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class KeyfactsEmailController extends AbstractController
 {
     /**
-     * @Route("/life/keyfacts/email", name="app_keyfacts_email")
+     * @Route("/ADL/life/keyfacts/email", name="app_keyfacts_email")
      */
     public function KeyfactsEmails(
         Request $request,

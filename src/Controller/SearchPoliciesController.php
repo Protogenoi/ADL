@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchPoliciesController extends AbstractController
 {
     /**
-     * @Route("/search/life/policies", name="search_policies")
+     * @Route("/ADL/search/life/policies", name="search_policies")
      */
     public function search_policies(
         PolicyRepository $policyRepository,

@@ -45,4 +45,4 @@ security:
   # - { path: ^/view, roles: ROLE_VIEW }
   # - { path: ^/life/reports, roles: ROLE_REPORTS }
   # - { path: ^/search, roles: ROLE_SEARCH }
-  # - { path: ^/profile, roles: ROLE_USER }
+  - { path: ^/ADL/, roles: ROLE_USER }

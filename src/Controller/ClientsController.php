@@ -44,7 +44,7 @@ class ClientsController extends AbstractController
 {
 
     /**
-     * @Route("/add/Client", name="app_addClientPage")
+     * @Route("/ADL/add/Client", name="app_addClientPage")
      */
     public function addClientsPage(EntityManagerInterface $em)
     {

@@ -41,7 +41,7 @@ class ADLController extends AbstractController
 {
 
     /**
-     * @Route("/Main", name="app_MainPage")
+     * @Route("/ADL/Main", name="app_MainPage")
      */
 
     public function mainPage()

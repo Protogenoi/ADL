@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class LifeReportsMenuController extends AbstractController
 {
     /**
-     * @Route("/life/reports/menu", name="app_life_reports_menu")
+     * @Route("/ADL/life/reports/menu", name="app_life_reports_menu")
      */
     public function lifeMenuController()
     {
