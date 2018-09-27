@@ -59,7 +59,7 @@ class ClientsController extends AbstractController
     }
 
     /**
-     * @Route("/Client", name="app_clientsPage")
+     * @Route("/ADL/Client", name="app_clientsPage")
      */
     public function clientsPage(EntityManagerInterface $em, Request $request)
     {

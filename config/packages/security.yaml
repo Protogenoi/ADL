@@ -41,8 +41,8 @@ security:
   # Note: Only the *first* access control that matches will be used
   access_control:
   - { path: ^/admin, roles: ROLE_ADMIN }
-  # - { path: ^/edit, roles: ROLE_EDIT }
-  # - { path: ^/view, roles: ROLE_VIEW }
-  # - { path: ^/life/reports, roles: ROLE_REPORTS }
-  # - { path: ^/search, roles: ROLE_SEARCH }
+  # - { path: ^/ADL/life/edit, roles: ROLE_EDIT }
+  # - { path: ^/ADL/life/view, roles: ROLE_VIEW }
+  # - { path: ^/ADL/life/reports, roles: ROLE_REPORTS }
+  # - { path: ^/ADL/life/search, roles: ROLE_SEARCH }
   - { path: ^/ADL/, roles: ROLE_USER }
