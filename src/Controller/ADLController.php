@@ -41,17 +41,6 @@ class ADLController extends AbstractController
 {
 
     /**
-     * @Route("/", name="app_loginPage")
-     */
-
-    public function loginPage()
-    {
-        return $this->render('ADL/loginPage.html.twig', [
-            'title' => 'Login'
-        ]);
-    }
-
-    /**
      * @Route("/Main", name="app_MainPage")
      */
 
