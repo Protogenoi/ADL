@@ -19,11 +19,12 @@ class UserFixture extends BaseFixtures
     public function loadData(ObjectManager $manager)
     {
 
-        $this->createMany(User::class, 10,
+        $this->createMany(User::class, 1,
             function (User $user, $count) use ($manager) {
 
                 $user->setFirstName('Michael')
                     ->setUsername($this->faker->firstName)
+                    ->setRoles(['ROLE_ADMIN'])
                     ->setPassword($this->passwordEncoder->encodePassword(
                         $user,
                         'Nightwish2416'

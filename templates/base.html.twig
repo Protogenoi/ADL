@@ -82,13 +82,17 @@
                         <a class="dropdown-item" href="#">Search Closer Trackers</a>
                         <a class="dropdown-item" href="#">Search Survey Trackers</a>
                         <a class="dropdown-item" href="#">Search Agent Trackers</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Closer Tracker Wallboard (Full)</a>
-                        <a class="dropdown-item" href="#">Closer Tracker Wallboard (Admin)</a>
-                        <a class="dropdown-item" href="#">Closer Tracker Wallboard (Limited)</a>
-                        <a class="dropdown-item" href="#">Agent Tracker Wallboard</a>
-                        <a class="dropdown-item" href="#">Wallboard</a>
-                        <a class="dropdown-item" href="#">Closer Time Tracker Wallboard</a>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Closer Tracker Wallboard (Full)</a>
+                            <a class="dropdown-item" href="#">Closer Tracker Wallboard (Admin)</a>
+                            <a class="dropdown-item" href="#">Closer Tracker Wallboard (Limited)</a>
+                            <a class="dropdown-item" href="#">Agent Tracker Wallboard</a>
+                            <a class="dropdown-item" href="#">Wallboard</a>
+                            <a class="dropdown-item" href="#">Closer Time Tracker Wallboard</a>
+                        {% endif %}
+
                     </div>
 
                 </li>
@@ -102,24 +106,31 @@
                         <a class="dropdown-item" href="#">Michael Dealsheets</a>
                         <a class="dropdown-item" href="#">Michael Dealsheet Callbacks</a>
                         <a class="dropdown-item" href="#">Search Dealsheets</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Dealsheets for QA</a>
-                        <a class="dropdown-item" href="#">Completed Dealsheets</a>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Dealsheets for QA</a>
+                            <a class="dropdown-item" href="#">Completed Dealsheets</a>
+                        {% endif %}
+
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">EWS</a>
-                        <a class="dropdown-item" href="#">Financials</a>
-                        <a class="dropdown-item" href="#">Staff Database</a>
-                        <a class="dropdown-item" href="#">ADL Settings</a>
-                    </div>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">EWS</a>
+                            <a class="dropdown-item" href="#">Financials</a>
+                            <a class="dropdown-item" href="#">Staff Database</a>
+                            <a class="dropdown-item" href="#">ADL Settings</a>
+                        </div>
+                    </li>
+                {% endif %}
+
             </ul>
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown">
