@@ -45,4 +45,9 @@ security:
   # - { path: ^/ADL/life/view, roles: ROLE_VIEW }
   # - { path: ^/ADL/life/reports, roles: ROLE_REPORTS }
   # - { path: ^/ADL/life/search, roles: ROLE_SEARCH }
-  - { path: ^/ADL/, roles: ROLE_USER }
+
+  #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+  - { path: ^/ADL/admin, roles: IS_AUTHENTICATED_FULLY }
+  - { path: ^/ADL, roles: IS_AUTHENTICATED_REMEMBERED }
+
+  #- { path: ^/ADL/, roles: ROLE_USER }
