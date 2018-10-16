@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\ApiToken;
 use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -29,6 +30,11 @@ class UserFixture extends BaseFixtures
                         $user,
                         'Nightwish2416'
                     ));
+
+                $apiToken = new ApiToken($user);
+                $apiToken2 = new ApiToken($user);
+                $manager->persist($apiToken);
+                $manager->persist($apiToken2);
 
             });
 
