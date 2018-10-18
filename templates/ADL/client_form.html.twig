@@ -1,0 +1,134 @@
+{{ form_start(NewClientForm, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="form-row">
+    <div class="col-sm">
+        <h2><span class="badge badge-info">Client Details</span></h2>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.title) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.firstName, {
+                'label': 'First Name'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.lastName, {
+                'label': 'Last Name'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.dob) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.email) }}
+        </div>
+
+    </div>
+
+    <div class="col-sm">
+
+        <h2><span class="badge badge-info">Client Details (2)</span></h2>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.title2, {
+                'label': 'Title'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.firstName2, {
+                'label': 'First Name'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.lastName2, {
+                'label': 'Last Name'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.dob2, {
+                'label': 'Date of Birth'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.email2, {
+                'label': 'Email'
+            }) }}
+        </div>
+
+    </div>
+
+    <div class="col-sm">
+
+        <h2><span class="badge badge-info">Contact Details</span></h2>
+
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.phoneNumber, {
+                'label': 'Contact Number'
+            }) }}
+        </div>
+        <div class="col-8">
+            {{ form_row(NewClientForm.altNumber, {
+                'label': 'Alt number',
+                'attr': {'class': 'foo'}
+            }) }}
+
+        </div>
+        <div class="col-8">
+            {{ form_row(NewClientForm.address1, {
+                'label': 'Address Line 1'
+            }) }}
+
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.address2
+                , {
+                    'label': 'Address Line 2'
+                }) }}
+
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.address3, {
+                'label': 'Address Line 3'
+            }) }}
+
+        </div>
+
+        <div class="col-8">
+
+            {{ form_row(NewClientForm.town) }}
+            {{ form_row(NewClientForm.postcode, {
+                'label': 'Post Code'
+            }) }}
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.owner) }}
+
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.addedBy) }}
+
+        </div>
+
+        <div class="col-8">
+            {{ form_row(NewClientForm.addedDate) }}
+        </div>
+
+
+        <button type="submit" class="btn {{ buttonClass }}">{{ buttonText }}</button>
+
+    </div>
+</div>
+{{ form_end(NewClientForm) }}

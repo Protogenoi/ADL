@@ -1,110 +1,28 @@
-{% extends 'base.html.twig' %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
-    {{ parent() }}
-
-    <link rel="stylesheet" href="{{ asset('assets/bootstrap-datepicker-1/css/bootstrap-datepicker.min.css') }}">
-
-
-{% endblock %}
+{% extends 'ADL/client_form_layout.html.twig' %}
 
 {% block body %}
 
     {{ parent() }}
 
     <div class="container">
-
-        {{ form_start(NewClientForm, {'attr': {'novalidate': 'novalidate'}}) }}
-
-        <h2><span class="badge badge-info">Client Details</span></h2>
-
-        {{ form_row(NewClientForm.title) }}
-        {{ form_row(NewClientForm.firstName, {
-            'label': 'First Name'
-        }) }}
-        {{ form_row(NewClientForm.lastName, {
-            'label': 'Last Name'
-        }) }}
-        {{ form_row(NewClientForm.dob) }}
-        {{ form_row(NewClientForm.email) }}
-
-        <h2><span class="badge badge-info">Client Details (2)</span></h2>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                Add Client
+            </div>
+            <div class="card-body">
+                <p class="card-text">
 
 
-        {{ form_row(NewClientForm.title2, {
-            'label': 'Title'
-        }) }}
-        {{ form_row(NewClientForm.firstName2, {
-            'label': 'First Name'
-        }) }}
-        {{ form_row(NewClientForm.lastName2, {
-            'label': 'Last Name'
-        }) }}
-        {{ form_row(NewClientForm.dob2, {
-            'label': 'Date of Birth'
-        }) }}
-        {{ form_row(NewClientForm.email2, {
-            'label': 'Email'
-        }) }}
+                    {{ include('ADL/client_form.html.twig', {
+                        'buttonText': 'Save',
+                        'buttonClass': 'btn-primary'
+                    }) }}
 
-        <h2><span class="badge badge-info">Contact Details</span></h2>
-
-        {{ form_row(NewClientForm.phoneNumber, {
-            'label': 'Contact Number'
-        }) }}
-        {{ form_row(NewClientForm.altNumber, {
-            'label': 'Alt number'
-        }) }}
-        {{ form_row(NewClientForm.address1, {
-            'label': 'Address Line 1'
-        }) }}
-        {{ form_row(NewClientForm.address2
-            , {
-                'label': 'Address Line 2'
-            }) }}
-        {{ form_row(NewClientForm.address3, {
-            'label': 'Address Line 3'
-        }) }}
-        {{ form_row(NewClientForm.town) }}
-        {{ form_row(NewClientForm.postcode, {
-            'label': 'Post Code'
-        }) }}
-        {{ form_row(NewClientForm.owner) }}
-        {{ form_row(NewClientForm.addedBy) }}
-        {{ form_row(NewClientForm.addedDate) }}
-
-
-        <button type="submit" class="btn btn-primary">Save</button>
-
-        {{ form_end(NewClientForm) }}
-
+                </p>
+            </div>
+        </div>
     </div>
 
-    {% block javascripts %}
-
-        {{ parent() }}
-
-        <script src="{{ asset('assets/bootstrap-datepicker-1/js/bootstrap-datepicker.min.js') }}"></script>
-
-        <script>
-            jQuery(document).ready(function () {
-                $('.dob_js-datepicker').datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-            })
-            jQuery(document).ready(function () {
-                $('.dob2_js-datepicker').datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-            })
-            jQuery(document).ready(function () {
-                $('.added_js-datepicker').datepicker({
-                    format: 'yyyy-mm-dd'
-                });
-            })
-        </script>
-
-    {% endblock %}
 
 {% endblock %}

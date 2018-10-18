@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/ADL/largeIcons.css') }}">
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-datepicker-1/css/bootstrap-datepicker.min.css') }}">
+
+
+{% endblock %}
+
+    {% block javascripts %}
+
+        {{ parent() }}
+
+        <script src="{{ asset('assets/bootstrap-datepicker-1/js/bootstrap-datepicker.min.js') }}"></script>
+
+        <script>
+            jQuery(document).ready(function () {
+                $('.dob_js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            })
+            jQuery(document).ready(function () {
+                $('.dob2_js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            })
+            jQuery(document).ready(function () {
+                $('.added_js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            })
+        </script>
+
+    {% endblock %}
