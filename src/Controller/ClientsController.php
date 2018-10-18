@@ -91,6 +91,40 @@ class ClientsController extends AbstractController
     }
 
     /**
+     * @Route("/ADL/edit/Client/{id}", name="app_edit_client")
+     */
+
+    public function editClientForm(Request $request, Clients $clients)
+    {
+
+        $CID = $request->query->get('CID');
+
+        $form = $this->createForm(AddClientForm::class, $clients);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $clientForm = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($clientForm);
+            $em->flush();
+
+            $this->addFlash('success', 'Client updated!');
+
+            return $this->redirectToRoute('search_clients');
+
+        }
+
+        return $this->render('ADL/editClient.html.twig', [
+            'title' => 'Edit Client',
+            'NewClientForm' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/ADL/Client", name="app_clientsPage")
      */
     public function clientsPage(EntityManagerInterface $em, Request $request)
