@@ -1,0 +1,10 @@
+title.not_blank: Please enter the clients title!
+firstname.not_blank: Please enter the clients first name!
+lastname.not_blank: Please enter the clients last name!
+email.not_blank: Please enter a valid email address!
+phone.not_blank: Please enter the clients phone number!
+address1.not_blank: Please enter the clients address!
+postcode.not_blank: Please enter the clients post code!
+"This value is not a valid email address.": Please enter a valid email address!
+"This value should not be blank.": Please fill in this required field.
+

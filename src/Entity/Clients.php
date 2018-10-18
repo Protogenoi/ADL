@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientsRepository")
@@ -19,31 +20,39 @@ class Clients
     private $id;
 
     /**
+     * @Assert\NotBlank(message="title.not_blank")
      * @ORM\Column(type="string", length=10)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank(message="firstname.not_blank")
      * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
+     * @Assert\NotBlank(message="lastname.not_blank")
      * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      * @ORM\Column(type="date")
      */
     private $dob;
 
     /**
+     * @Assert\NotBlank(message="email.not_blank")
+     * @Assert\Email()
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $email;
 
     /**
+     * @Assert\NotBlank(message="phone.not_blank")
      * @ORM\Column(type="string", length=15)
      */
     private $phoneNumber;
@@ -79,6 +88,7 @@ class Clients
     private $email2;
 
     /**
+     * @Assert\NotBlank(message="address1.not_blank")
      * @ORM\Column(type="string", length=255)
      */
     private $address1;
@@ -99,6 +109,7 @@ class Clients
     private $town;
 
     /**
+     * @Assert\NotBlank(message="postcode.not_blank")
      * @ORM\Column(type="string", length=20)
      */
     private $postcode;
@@ -114,6 +125,8 @@ class Clients
     private $addedBy;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Type("\DateTime")
      * @ORM\Column(type="datetime")
      */
     private $addedDate;

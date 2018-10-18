@@ -34,6 +34,7 @@ namespace App\Controller;
 
 
 use App\Entity\Clients;
+use App\Form\AddClientForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,7 +47,7 @@ class ClientsController extends AbstractController
     /**
      * @Route("/ADL/add/Client", name="app_addClientPage")
      */
-    public function addClientsPage(EntityManagerInterface $em)
+    public function addClientsPage()
     {
 
         die('todo');
@@ -56,6 +57,37 @@ class ClientsController extends AbstractController
             $client->getID()
         ));
 
+    }
+
+    /**
+     * @Route("/ADL/new/Client", name="app_add_client")
+     */
+
+    public function addClientForm(Request $request)
+    {
+        $form = $this->createForm(AddClientForm::class);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $clientForm = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($clientForm);
+            $em->flush();
+
+            $this->addFlash('success', 'Client added!');
+
+            return $this->redirectToRoute('search_clients');
+
+        }
+
+        return $this->render('ADL/addClient.html.twig', [
+            'title' => 'Add New Client',
+            'NewClientForm' => $form->createView(),
+        ]);
     }
 
     /**

@@ -38,7 +38,7 @@
                     <a class="nav-link" href="{{ path('app_MainPage') }}"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Add</a>
+                    <a class="nav-link" href="{{ path('app_add_client') }}"><i class="fas fa-user-plus"></i> Add</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('search_clients') }}"><i class="fas fa-search"></i>Search</a>
@@ -50,7 +50,7 @@
                         CRM
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Add Client</a>
+                        <a class="dropdown-item" href="{{ path('app_add_client') }}">Add Client</a>
                         <a class="dropdown-item" href="{{ path('search_clients') }}">Search</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ path('app_life_reports_menu') }}">Reports</a>
@@ -167,6 +167,14 @@
             </ul>
         </div>
     </nav>
+
+    {% for msg in app.session.flashBag.get('success') %}
+
+        <div class="alert alert-success">
+            {{ msg }}
+        </div>
+
+    {% endfor %}
 
 
 {% endblock %}
