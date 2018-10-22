@@ -3,28 +3,37 @@
     <div class="col-sm">
         <h2><span class="badge badge-info">Client Details</span></h2>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.title) }}
+        <div class="col">
+            {{ form_row(NewClientForm.title, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.firstName, {
-                'label': 'First Name'
+                'label': 'First Name',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.lastName, {
-                'label': 'Last Name'
+                'label': 'Last Name',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.dob) }}
+        <div class="col">
+            {{ form_row(NewClientForm.dob, {
+                'attr': {'class': 'form-group form-inline form-control-sm'},
+                'label_attr': {'class': 'foo'},
+            }) }}
         </div>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.email) }}
+        <div class="col">
+            {{ form_row(NewClientForm.email, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
         </div>
 
     </div>
@@ -33,33 +42,38 @@
 
         <h2><span class="badge badge-info">Client Details (2)</span></h2>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.title2, {
-                'label': 'Title'
+                'label': 'Title',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.firstName2, {
-                'label': 'First Name'
+                'label': 'First Name',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.lastName2, {
-                'label': 'Last Name'
+                'label': 'Last Name',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.dob2, {
-                'label': 'Date of Birth'
+                'label': 'Date of Birth',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.email2, {
-                'label': 'Email'
+                'label': 'Email',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
@@ -70,60 +84,80 @@
         <h2><span class="badge badge-info">Contact Details</span></h2>
 
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.phoneNumber, {
                 'label': 'Contact Number'
             }) }}
         </div>
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.altNumber, {
                 'label': 'Alt number',
-                'attr': {'class': 'foo'}
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
 
         </div>
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.address1, {
-                'label': 'Address Line 1'
+                'label': 'Address Line 1',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
 
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.address2
                 , {
-                    'label': 'Address Line 2'
+                    'label': 'Address Line 2',
+                    'attr': {'class': 'form-group form-inline form-control-sm'}
                 }) }}
 
         </div>
 
-        <div class="col-8">
+        <div class="col">
             {{ form_row(NewClientForm.address3, {
-                'label': 'Address Line 3'
+                'label': 'Address Line 3',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
 
         </div>
 
-        <div class="col-8">
+        <div class="col">
 
-            {{ form_row(NewClientForm.town) }}
+            {{ form_row(NewClientForm.town, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
             {{ form_row(NewClientForm.postcode, {
-                'label': 'Post Code'
+                'label': 'Post Code',
+                'attr': {'class': 'form-group form-inline form-control-sm'}
             }) }}
         </div>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.owner) }}
+        <div class="col">
+            {{ form_row(NewClientForm.owner, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
 
         </div>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.addedBy) }}
+        <div class="col">
+            {{ form_row(NewClientForm.addedBy, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
 
         </div>
 
-        <div class="col-8">
-            {{ form_row(NewClientForm.addedDate) }}
+        <div class="col">
+            {{ form_row(NewClientForm.addedDate, {
+                'attr': {'class': 'form-group form-inline form-control-sm'}
+            }) }}
+        </div>
+
+        <div clas="col">
+            <div class="form-group">
+                <select class="form-group form-inline form-control-sm form-control" required>
+                    <option>Change Reason</option>
+                </select>
+            </div>
         </div>
 
 
