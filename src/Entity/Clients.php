@@ -142,11 +142,6 @@ class Clients
     private $updatedDate;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $dealsheetID;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Policy", mappedBy="client")
      */
     private $policies;
@@ -439,18 +434,6 @@ class Clients
     public function setUpdatedDate(?\DateTimeInterface $updatedDate): self
     {
         $this->updatedDate = $updatedDate;
-
-        return $this;
-    }
-
-    public function getDealsheetID(): ?int
-    {
-        return $this->dealsheetID;
-    }
-
-    public function setDealsheetID(?int $dealsheetID): self
-    {
-        $this->dealsheetID = $dealsheetID;
 
         return $this;
     }
