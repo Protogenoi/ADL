@@ -63,7 +63,7 @@ class ClientsController extends AbstractController
      * @Route("/ADL/new/Client", name="app_add_client")
      */
 
-    public function addClientForm(Request $request)
+    public function addClientForm(EntityManagerInterface $em, Request $request)
     {
         $form = $this->createForm(AddClientForm::class);
 
@@ -74,7 +74,6 @@ class ClientsController extends AbstractController
 
             $clientForm = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
             $em->persist($clientForm);
             $em->flush();
 
@@ -94,7 +93,11 @@ class ClientsController extends AbstractController
      * @Route("/ADL/edit/Client/{id}", name="app_edit_client")
      */
 
-    public function editClientForm(Request $request, Clients $clients)
+    public function editClientForm(
+        EntityManagerInterface $em,
+        Request $request,
+        Clients $clients
+    )
     {
 
         $CID = $request->query->get('CID');
@@ -107,8 +110,6 @@ class ClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $clientForm = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
             $em->persist($clientForm);
             $em->flush();
 
