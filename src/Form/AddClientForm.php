@@ -56,6 +56,7 @@ class AddClientForm extends AbstractType
                     'Miss' => 'Miss',
                     'Other' => 'Other',
                 ],
+
             ])
             ->add('firstName')
             ->add('lastName')
@@ -91,13 +92,14 @@ class AddClientForm extends AbstractType
             ->add('address3')
             ->add('town')
             ->add('postcode')
-            ->add('owner')
-            ->add('User')
-            ->add('addedDate', DateType::class, [
-                'widget' => 'single_text',
-                'html5' => false,
-                'attr' => ['class' => 'added_js-datepicker'],
-            ]);
+            ->add('owner');
+//            ->add('User')
+        /*            ->add('addedDate', DateType::class, [
+                        'widget' => 'single_text',
+                        'html5' => false,
+                        'required' => false,
+                        'attr' => ['class' => 'added_js-datepicker'],
+                    ]);*/
     }
 
     public function configureOptions(OptionsResolver $resolver)

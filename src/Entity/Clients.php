@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -120,9 +121,8 @@ class Clients
     private $owner;
 
     /**
-     * @Assert\NotBlank()
-     * @Assert\Type("\DateTime")
      * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $addedDate;
 
@@ -132,7 +132,9 @@ class Clients
     private $updatedBy;
 
     /**
+     * @var \DateTime $updatedDate
      * @ORM\Column(type="datetime", nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedDate;
 

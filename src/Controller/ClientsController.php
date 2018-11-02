@@ -110,7 +110,7 @@ class ClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var  $clientForm */
             $clientForm = $form->getData();
-            $clientForm->User($this->getUser());
+            $clientForm->setUser($this->getUser());
 
             $em->persist($clientForm);
             $em->flush();

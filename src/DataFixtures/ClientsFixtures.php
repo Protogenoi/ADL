@@ -38,7 +38,6 @@ class ClientsFixtures extends BaseFixtures implements DependentFixtureInterface
                     ->setTown($this->faker->city)
                     ->setPostcode($this->faker->postcode)
                     ->setUser($this->getRandomReference('main_users'))
-                    ->setAddedDate($this->faker->dateTimeThisMonth)
                     ->setOwner('E Corp');
 
                 return $client;
