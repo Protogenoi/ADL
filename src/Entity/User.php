@@ -47,9 +47,15 @@ class User implements UserInterface
      */
     private $apiTokens;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Clients", mappedBy="User")
+     */
+    private $User;
+
     public function __construct()
     {
         $this->apiTokens = new ArrayCollection();
+        $this->User = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +168,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($apiToken->getUser() === $this) {
                 $apiToken->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Clients[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->User;
+    }
+
+    public function addUser(Clients $user): self
+    {
+        if (!$this->User->contains($user)) {
+            $this->User[] = $user;
+            $user->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(Clients $user): self
+    {
+        if ($this->User->contains($user)) {
+            $this->User->removeElement($user);
+            // set the owning side to null (unless already changed)
+            if ($user->getUser() === $this) {
+                $user->setUser(null);
             }
         }
 

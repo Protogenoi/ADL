@@ -120,11 +120,6 @@ class Clients
     private $owner;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $addedBy;
-
-    /**
      * @Assert\NotBlank()
      * @Assert\Type("\DateTime")
      * @ORM\Column(type="datetime")
@@ -160,6 +155,12 @@ class Clients
      * @ORM\OneToMany(targetEntity="App\Entity\SmsInbound", mappedBy="client")
      */
     private $smsInbounds;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $User;
 
     public function __construct()
     {
@@ -390,18 +391,6 @@ class Clients
         return $this;
     }
 
-    public function getAddedBy(): ?string
-    {
-        return $this->addedBy;
-    }
-
-    public function setAddedBy(string $addedBy): self
-    {
-        $this->addedBy = $addedBy;
-
-        return $this;
-    }
-
     public function getAddedDate(): ?\DateTimeInterface
     {
         return $this->addedDate;
@@ -561,4 +550,17 @@ class Clients
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
+
+        return $this;
+    }
+
 }
