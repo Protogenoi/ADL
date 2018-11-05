@@ -120,7 +120,9 @@ class ClientsController extends AbstractController
 
             $this->addFlash('success', 'Client updated!');
 
-            return $this->redirectToRoute('search_clients');
+            return $this->redirectToRoute('app_clientsPage', [
+                'CID' => $form->getData()->getId(),
+            ]);
 
         }
 

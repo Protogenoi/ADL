@@ -36,6 +36,7 @@ namespace App\Form;
 use App\Entity\Clients;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -50,6 +51,7 @@ class AddClientForm extends AbstractType
                 'choices' => [
                     'Select...' => null,
                     'Dr' => 'Dr',
+                    'Prof' => 'Prof',
                     'Mr' => 'Mr',
                     'Mrs' => 'Mrs',
                     'Ms' => 'Ms',
@@ -70,6 +72,7 @@ class AddClientForm extends AbstractType
                 'choices' => [
                     'Select...' => null,
                     'Dr' => 'Dr',
+                    'Prof' => 'Prof',
                     'Mr' => 'Mr',
                     'Mrs' => 'Mrs',
                     'Ms' => 'Ms',
@@ -91,15 +94,13 @@ class AddClientForm extends AbstractType
             ->add('address2')
             ->add('address3')
             ->add('town')
-            ->add('postcode');
+            ->add('postcode')
         // ->add('owner')
 //            ->add('User')
-        /*            ->add('addedDate', DateType::class, [
-                        'widget' => 'single_text',
-                        'html5' => false,
-                        'required' => false,
-                        'attr' => ['class' => 'added_js-datepicker'],
-                    ]);*/
+            /*                  ->add('addedDate', DateTimeType::class, [
+                                   'widget' => 'single_text',
+                               ])*/
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
