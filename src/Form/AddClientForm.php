@@ -91,8 +91,8 @@ class AddClientForm extends AbstractType
             ->add('address2')
             ->add('address3')
             ->add('town')
-            ->add('postcode')
-            ->add('owner');
+            ->add('postcode');
+        // ->add('owner')
 //            ->add('User')
         /*            ->add('addedDate', DateType::class, [
                         'widget' => 'single_text',
