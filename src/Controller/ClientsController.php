@@ -36,6 +36,7 @@ namespace App\Controller;
 use App\Entity\Clients;
 use App\Entity\User;
 use App\Form\AddClientForm;
+use App\Form\EditClientForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -105,7 +106,7 @@ class ClientsController extends AbstractController
 
         $CID = $request->query->get('CID');
 
-        $form = $this->createForm(AddClientForm::class, $clients);
+        $form = $this->createForm(EditClientForm::class, $clients);
 
         // only handles data on POST
         $form->handleRequest($request);
@@ -113,7 +114,6 @@ class ClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var  $clientForm */
             $clientForm = $form->getData();
-            $clientForm->setUser($this->getUser());
 
             $em->persist($clientForm);
             $em->flush();
