@@ -35,6 +35,7 @@ namespace App\Form;
 
 use App\Entity\Clients;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -44,6 +45,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EditClientForm extends AbstractType
 {
+
+    private $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -98,6 +106,10 @@ class EditClientForm extends AbstractType
             ->add('postcode')
             ->add('user', EntityType::class, [
                 'class' => User::class,
+                'placeholder' => 'Choose a user',
+                'choices' => $this->userRepository
+                    ->findAllUsersAlphabetical(),
+                'invalid_message' => 'Symfony is too smart for your hacking!',
             ])
             // ->add('owner')
 //            ->add('User')

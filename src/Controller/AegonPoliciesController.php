@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Policy;
+use App\Form\AddAegonPolicyForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,4 +67,40 @@ class AegonPoliciesController extends AbstractController
             'policy' => $policy,
         ]);
     }
+
+    /**
+     * @Route("/ADL/life/aegon/add/", name="app_addAegonPolicy")
+     */
+
+    public function addAegonPolicy(EntityManagerInterface $em, Request $request)
+    {
+
+        $form = $this->createForm(AddAegonPolicyForm::class);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /**
+             * @var $aegonForm
+             */
+            $aegonForm = $form->getData();
+            $aegonForm->setUser($this->getUser());
+            $aegonForm->setOwner('Legal and General');
+            $em->persist($aegonForm);
+            $em->flush();
+
+            $this->addFlash('success', 'Client added!');
+
+            return $this->redirectToRoute('app_clientsPage', [
+                'CID' => $form->getData()->getId(),
+            ]);
+
+        }
+
+        return $this->render('ADL/addClient.html.twig', [
+            'title' => 'Add Aegon Policy',
+            'NewAegonPolicy' => $form->createView(),
+        ]);
+    }
+
 }

@@ -63,7 +63,6 @@ class AddClientForm extends AbstractType
             ->add('lastName')
             ->add('dob', DateType::class, [
                 'widget' => 'single_text',
-                'html5' => false,
                 'attr' => ['class' => 'dob_js-datepicker'],
             ])
             ->add('email')

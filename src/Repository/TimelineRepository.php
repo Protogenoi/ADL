@@ -19,6 +19,23 @@ class TimelineRepository extends ServiceEntityRepository
         parent::__construct($registry, Timeline::class);
     }
 
+
+    public function updateClientTimeline($CID, $option)
+    {
+        $conn = $this->getEntityManager()
+            ->getConnection();
+
+        $sql
+            = 'UPDATE timeline set note_type="Client updated", message=:OPTION, added_by=:ADDED_BY WHERE client=:CID';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':CID', $CID);
+        $stmt->bindParam(':OPTION', $option);
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+    }
+
 //    /**
 //     * @return Timeline[] Returns an array of Timeline objects
 //     */

@@ -39,7 +39,7 @@ class Clients
     private $lastName;
 
     /**
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="Enter a valid DOB Y-m-d")
      * @Assert\Type("\DateTime")
      * @ORM\Column(type="date")
      */
@@ -54,12 +54,12 @@ class Clients
 
     /**
      * @Assert\NotBlank(message="phone.not_blank")
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=12)
      */
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=12, nullable=true)
      */
     private $altNumber;
 

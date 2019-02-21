@@ -37,6 +37,7 @@ use App\Entity\Clients;
 use App\Entity\User;
 use App\Form\AddClientForm;
 use App\Form\EditClientForm;
+use App\Repository\TimelineRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -45,21 +46,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClientsController extends AbstractController
 {
-
-    /**
-     * @Route("/ADL/add/Client", name="app_addClientPage")
-     */
-    public function addClientsPage()
-    {
-
-        die('todo');
-
-        return new Response(sprintf(
-            'Client added: Client id is: #%d',
-            $client->getID()
-        ));
-
-    }
 
     /**
      * @Route("/ADL/new/Client", name="app_add_client")
@@ -82,9 +68,15 @@ class ClientsController extends AbstractController
             $em->persist($clientForm);
             $em->flush();
 
-            $this->addFlash('success', 'Client added!');
+            $CID = $form->getData()->getId();
 
-            return $this->redirectToRoute('search_clients');
+            //$queryBuilder = $timelineRepository->updateClientTimeline($CID, $option);
+
+            $this->addFlash('success', 'Client added '.$CID.'!');
+
+            return $this->redirectToRoute('app_clientsPage', [
+                'CID' => $form->getData()->getId(),
+            ]);
 
         }
 
@@ -101,10 +93,9 @@ class ClientsController extends AbstractController
     public function editClientForm(
         EntityManagerInterface $em,
         Request $request,
-        Clients $clients
+        Clients $clients,
+    TimelineRepository $timelineRepository
     ) {
-
-        $CID = $request->query->get('CID');
 
         $form = $this->createForm(EditClientForm::class, $clients);
 
@@ -114,14 +105,18 @@ class ClientsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var  $clientForm */
             $clientForm = $form->getData();
-
             $em->persist($clientForm);
             $em->flush();
+
+            $option = $request->request->get('option');
+            $CID = $form->getData()->getId();
+
+            //$queryBuilder = $timelineRepository->updateClientTimeline($CID, $option);
 
             $this->addFlash('success', 'Client updated!');
 
             return $this->redirectToRoute('app_clientsPage', [
-                'CID' => $form->getData()->getId(),
+                'CID' => $CID,
             ]);
 
         }
